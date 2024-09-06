@@ -1,0 +1,41 @@
+-- Replace "ToolName" with the name of the tool you want to check for
+local toolName = "The Arkenstone"
+
+-- Function to check if a player has the specific tool in their backpack
+local function playerHasTool(player)
+    local backpack = player:FindFirstChildOfClass("Backpack")
+    if backpack then
+        for _, item in pairs(backpack:GetChildren()) do
+            if item:IsA("Tool") and item.Name == toolName then
+                return true
+            end
+        end
+    end
+    return false
+end
+
+-- Function to send a message about tool ownership
+local function announcePlayersWithTool()
+    local currentPlayersWithTool = {}
+    for _, player in pairs(game:GetService("Players"):GetPlayers()) do
+        if playerHasTool(player) then
+            table.insert(currentPlayersWithTool, player.Name)
+        end
+    end
+
+    local message
+    if #currentPlayersWithTool > 0 then
+        message = table.concat(currentPlayersWithTool, ", ") .. " have " .. toolName
+    else
+        message = "No one has " .. toolName
+    end
+    
+    local args = {
+        [1] = message,
+        [2] = "All"
+    }
+    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
+end
+
+-- Execute the function to announce tool ownership
+announcePlayersWithTool()

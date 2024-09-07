@@ -1,0 +1,112 @@
+local Players = game:GetService("Players")
+local arkenstoneName = "Gun"  -- Tool Name for Gun
+local stoneName = "Knife"     -- Tool Name for Knife
+local redColor = Color3.fromRGB(255, 0, 0)  -- Red color
+local blueColor = Color3.fromRGB(0, 0, 255)  -- Blue color
+
+-- Function to create or update the BillboardGui with the appropriate symbol and color
+local function updateNameTag(player)
+    local character = player.Character
+    if not character then return end
+
+    -- Ensure the character has a head
+    local head = character:FindFirstChild("Head")
+    if not head then return end
+
+    -- Find and remove existing BillboardGui if it exists
+    local existingBillboardGui = head:FindFirstChild("BillboardGui")
+    if existingBillboardGui then
+        existingBillboardGui:Destroy()
+    end
+
+    -- Check if the player has the specific tools
+    local backpack = player:FindFirstChildOfClass("Backpack")
+    local hasArkenstone = false
+    local hasStone = false
+    if backpack then
+        for _, tool in ipairs(backpack:GetChildren()) do
+            if tool:IsA("Tool") then
+                if tool.Name == arkenstoneName then
+                    hasArkenstone = true
+                elseif tool.Name == stoneName then
+                    hasStone = true
+                end
+            end
+        end
+    end
+    
+    -- Create new BillboardGui if needed
+    if hasArkenstone or hasStone then
+        local billboardGui = Instance.new("BillboardGui")
+        billboardGui.Name = "BillboardGui"
+        billboardGui.Adornee = head
+        billboardGui.Size = UDim2.new(0, 50, 0, 50)
+        billboardGui.StudsOffset = Vector3.new(0, 2, 0)  -- Adjust as necessary
+        billboardGui.Parent = head
+
+        local textLabel = Instance.new("TextLabel")
+        textLabel.Name = "box"  -- Name text label as "box"
+        textLabel.Size = UDim2.new(1, 0, 1, 0)
+        textLabel.BackgroundTransparency = 1
+        textLabel.TextStrokeTransparency = 0.5
+        textLabel.TextScaled = true
+        textLabel.Parent = billboardGui
+
+        -- Update the text and color based on tool presence
+        if hasArkenstone then
+            textLabel.Text = "<Sheriff>"
+            textLabel.TextColor3 = blueColor  -- Set text color to blue for Gun
+        elseif hasStone then
+            textLabel.Text = "<Murderer>"
+            textLabel.TextColor3 = redColor  -- Set text color to red for Knife
+        end
+    end
+end
+
+-- Function to handle player respawn and update their name tags
+local function onCharacterAdded(character)
+    local player = Players:GetPlayerFromCharacter(character)
+    if player then
+        updateNameTag(player)
+    end
+end
+
+-- Function to monitor players and update their name tags
+local function monitorPlayers()
+    while true do
+        for _, player in ipairs(Players:GetPlayers()) do
+            if player.Character then
+                updateNameTag(player)
+            end
+        end
+        wait(0.5)  -- Check every second
+    end
+end
+
+-- Connect functions to player events
+Players.PlayerAdded:Connect(function(player)
+    player.CharacterAdded:Connect(onCharacterAdded)
+    player.CharacterRemoving:Connect(function()
+        -- Ensure to remove BillboardGui on character removing
+        local character = player.Character
+        if character then
+            local head = character:FindFirstChild("Head")
+            if head then
+                local billboardGui = head:FindFirstChild("BillboardGui")
+                if billboardGui then
+                    billboardGui:Destroy()
+                end
+            end
+        end
+    end)
+end)
+
+-- Ensure we update all existing players' name tags
+for _, player in ipairs(Players:GetPlayers()) do
+    if player.Character then
+        updateNameTag(player)
+    end
+end
+
+-- Start monitoring players
+coroutine.wrap(monitorPlayers)()

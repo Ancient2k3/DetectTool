@@ -1,0 +1,78 @@
+local Players = game:GetService("Players")
+local toolName = "The Arkenstone"
+local greenColor = Color3.fromRGB(0, 255, 0)  -- Green color
+
+-- Function to create or update the BillboardGui with the appropriate symbol
+local function updateNameTag(player)
+    local character = player.Character
+    if not character then return end
+
+    -- Ensure the character has a head
+    local head = character:FindFirstChild("Head")
+    if not head then return end
+
+    -- Find and remove existing BillboardGui if it exists
+    local existingBillboardGui = head:FindFirstChild("BillboardGui")
+    if existingBillboardGui then
+        existingBillboardGui:Destroy()
+    end
+
+    -- Create new BillboardGui
+    local billboardGui = Instance.new("BillboardGui")
+    billboardGui.Name = "BillboardGui"
+    billboardGui.Adornee = head
+    billboardGui.Size = UDim2.new(0, 50, 0, 50)
+    billboardGui.StudsOffset = Vector3.new(0, 2, 0)
+    billboardGui.Parent = head
+
+    local textLabel = Instance.new("TextLabel")
+    textLabel.Name = "box"  -- Name text label as "box"
+    textLabel.Size = UDim2.new(1, 0, 1, 0)
+    textLabel.BackgroundTransparency = 1
+    textLabel.TextColor3 = greenColor  -- Set text color to green
+    textLabel.TextStrokeTransparency = 0.5
+    textLabel.TextScaled = true
+    textLabel.Parent = billboardGui
+
+    -- Update the text based on tool presence
+    local backpack = player:FindFirstChildOfClass("Backpack")
+    local hasTool = false
+    if backpack then
+        for _, tool in ipairs(backpack:GetChildren()) do
+            if tool:IsA("Tool") and tool.Name == toolName then
+                hasTool = true
+                break
+            end
+        end
+    end
+    textLabel.Text = hasTool and "■" or "□"
+end
+
+-- Function to monitor players and update their name tags
+local function monitorPlayers()
+    while true do
+        for _, player in ipairs(Players:GetPlayers()) do
+            if player.Character then
+                updateNameTag(player)
+            end
+        end
+        wait(1)  -- Check every second
+    end
+end
+
+-- Connect functions to player events
+Players.PlayerAdded:Connect(function(player)
+    player.CharacterAdded:Connect(function(character)
+        updateNameTag(player)
+    end)
+end)
+
+-- Ensure we update all existing players' name tags
+for _, player in ipairs(Players:GetPlayers()) do
+    if player.Character then
+        updateNameTag(player)
+    end
+end
+
+-- Start monitoring players
+coroutine.wrap(monitorPlayers)()

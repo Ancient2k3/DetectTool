@@ -183,7 +183,7 @@ button3.Font = Enum.Font.PatrickHand
 button3.Text = "Remote Spy for Mobile"
 
 button3.MouseButton1Click:Connect(function()
-    
+    loadstring(game:HttpGet("https://rawscripts.net/raw/a-literal-baseplate.-Remote-Spy-For-Mobile-18133"))()
 end)
 
 local button4 = Instance.new("TextButton")
@@ -198,7 +198,7 @@ button4.Font = Enum.Font.PatrickHand
 button4.Text = "Teleport: Part/HumanoidRootPart/Head"
 
 button4.MouseButton1Click:Connect(function()
-    
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/NganHa2k3/RobloxScript/main2/Part_V0'))()
 end)
 
 local button5 = Instance.new("TextButton")
@@ -213,7 +213,7 @@ button5.Font = Enum.Font.PatrickHand
 button5.Text = "Tween: Part/HumanoidRootPart/Head"
 
 button5.MouseButton1Click:Connect(function()
-    
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/NganHa2k3/RobloxScript/main2/Part_V1'))()
 end)
 
 local button6 = Instance.new("TextButton")
@@ -228,5 +228,30 @@ button6.Font = Enum.Font.PatrickHand
 button6.Text = "Infinite Yield"
 
 button6.MouseButton1Click:Connect(function()
-    
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
 end)
+
+local button7 = Instance.new("TextButton")
+button7.Parent = ToolsBox
+button7.BackgroundColor3 = Color3.new(0, 0, 0)
+button7.BackgroundTransparency = 0.5
+button7.Size = UDim2.new(0.03, 0, 0.9, 0)
+button7.TextScaled = true
+button7.Position = UDim2.new(0.245, 0, 0, 0)
+button7.TextColor3 = Color3.fromRGB(255, 255, 255)
+button7.Font = Enum.Font.PatrickHand
+button7.Text = "Part Detector by Ghostplayer"
+
+button7.MouseButton1Click:Connect(function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/GhostPlayer352/Test4/main/Part%20Name%20Detector'))()
+end)
+
+-- N msg --
+
+local CoreGui = game:GetService("StarterGui")
+
+    CoreGui:SetCore("SendNotification", {
+        Title = "Welcome to NganHa2k3 Script",
+        Text = " This is a bunch of useful tools !",
+        Duration = 2,
+})

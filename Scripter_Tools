@@ -56,6 +56,49 @@ local function CFramePositionReader()
     game:GetService("RunService").Heartbeat:Connect(updateCFrame)
 end
 
+local function CFramePositionReader1()
+    local player = game.Players.LocalPlayer
+    local screenGui = Instance.new("ScreenGui")
+    screenGui.Name = "CFrameDisplayGui"
+    screenGui.Parent = player:WaitForChild("PlayerGui")
+
+    local textBox = Instance.new("TextBox")
+    textBox.Name = "CFrameTextBox"
+    textBox.Size = UDim2.new(0.6, 0, 0.1, 0)  -- Adjust size as needed
+    textBox.Position = UDim2.new(0.2, 0, 0.2, 0)  -- Adjust position as needed
+    textBox.Text = "Error: If this appearance means the script is outdated!"
+    textBox.ClearTextOnFocus = false
+    textBox.TextScaled = true
+    textBox.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+    textBox.BackgroundTransparency = 0.8
+    textBox.Parent = screenGui
+
+    local ExitButton = Instance.new("TextButton")
+    ExitButton.Name = "CFrameExitButton"
+    ExitButton.Size = UDim2.new(0.05, 0, 0.1, 0)  -- Adjust size as needed
+    ExitButton.Position = UDim2.new(0.3, 0, 0, 0)  -- Adjust position as needed
+    ExitButton.Text = "<X>"
+    ExitButton.TextScaled = true
+    ExitButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+    ExitButton.BackgroundTransparency = 0.8
+    ExitButton.Font = Enum.Font.PatrickHand
+    ExitButton.Parent = screenGui
+
+    ExitButton.MouseButton1Click:Connect(function()
+        screenGui:Destroy()
+    end)
+
+    local function updateCFrame()
+        local character = player.Character or player.CharacterAdded:Wait()
+        local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+        
+        local cframe = humanoidRootPart.CFrame
+        textBox.Text = " .. tostring(cframe.Position) .. "
+    end
+
+    game:GetService("RunService").Heartbeat:Connect(updateCFrame)
+end
+
 -- Close of Function Box --
 
 PlusButton.Parent = ScreenGui
@@ -107,9 +150,83 @@ button1.TextScaled = true
 button1.Position = UDim2.new(0.005, 0, 0, 0)
 button1.TextColor3 = Color3.fromRGB(255, 255, 255)
 button1.Font = Enum.Font.PatrickHand
-button1.Text = "CFrame Position: Reader"
+button1.Text = "CFrame Reader: Instantly Tp Position"
 
 button1.MouseButton1Click:Connect(function()
     CFramePositionReader()
 end)
 
+local button2 = Instance.new("TextButton")
+button2.Parent = ToolsBox
+button2.BackgroundColor3 = Color3.new(0, 0, 0)
+button2.BackgroundTransparency = 0.5
+button2.Size = UDim2.new(0.03, 0, 0.9, 0)
+button2.TextScaled = true
+button2.Position = UDim2.new(0.045, 0, 0, 0)
+button2.TextColor3 = Color3.fromRGB(255, 255, 255)
+button2.Font = Enum.Font.PatrickHand
+button2.Text = "CFrame Reader: Position"
+
+button2.MouseButton1Click:Connect(function()
+    CFramePositionReader1()
+end)
+
+local button3 = Instance.new("TextButton")
+button3.Parent = ToolsBox
+button3.BackgroundColor3 = Color3.new(0, 0, 0)
+button3.BackgroundTransparency = 0.5
+button3.Size = UDim2.new(0.03, 0, 0.9, 0)
+button3.TextScaled = true
+button3.Position = UDim2.new(0.085, 0, 0, 0)
+button3.TextColor3 = Color3.fromRGB(255, 255, 255)
+button3.Font = Enum.Font.PatrickHand
+button3.Text = "Remote Spy for Mobile"
+
+button3.MouseButton1Click:Connect(function()
+    
+end)
+
+local button4 = Instance.new("TextButton")
+button4.Parent = ToolsBox
+button4.BackgroundColor3 = Color3.new(0, 0, 0)
+button4.BackgroundTransparency = 0.5
+button4.Size = UDim2.new(0.03, 0, 0.9, 0)
+button4.TextScaled = true
+button4.Position = UDim2.new(0.125, 0, 0, 0)
+button4.TextColor3 = Color3.fromRGB(255, 255, 255)
+button4.Font = Enum.Font.PatrickHand
+button4.Text = "Teleport: Part/HumanoidRootPart/Head"
+
+button4.MouseButton1Click:Connect(function()
+    
+end)
+
+local button5 = Instance.new("TextButton")
+button5.Parent = ToolsBox
+button5.BackgroundColor3 = Color3.new(0, 0, 0)
+button5.BackgroundTransparency = 0.5
+button5.Size = UDim2.new(0.03, 0, 0.9, 0)
+button5.TextScaled = true
+button5.Position = UDim2.new(0.165, 0, 0, 0)
+button5.TextColor3 = Color3.fromRGB(255, 255, 255)
+button5.Font = Enum.Font.PatrickHand
+button5.Text = "Tween: Part/HumanoidRootPart/Head"
+
+button5.MouseButton1Click:Connect(function()
+    
+end)
+
+local button6 = Instance.new("TextButton")
+button6.Parent = ToolsBox
+button6.BackgroundColor3 = Color3.new(0, 0, 0)
+button6.BackgroundTransparency = 0.5
+button6.Size = UDim2.new(0.03, 0, 0.9, 0)
+button6.TextScaled = true
+button6.Position = UDim2.new(0.205, 0, 0, 0)
+button6.TextColor3 = Color3.fromRGB(255, 255, 255)
+button6.Font = Enum.Font.PatrickHand
+button6.Text = "Infinite Yield"
+
+button6.MouseButton1Click:Connect(function()
+    
+end)

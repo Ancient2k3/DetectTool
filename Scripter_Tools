@@ -271,7 +271,7 @@ local CoreGui = game:GetService("StarterGui")
 -- Chatted --
 
 local args = {
-    [1] = "✦🄰🅄🅃🄾❖ Hello, I will 「C░h░e░a░t░」.",
+    [1] = "✦Auto: Hello, I will「Cheat」.",
     [2] = "All"
 }
 

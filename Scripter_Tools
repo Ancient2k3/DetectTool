@@ -57,49 +57,6 @@ local function CFramePositionReader()
     game:GetService("RunService").Heartbeat:Connect(updateCFrame)
 end
 
-local function CFramePositionReader1()
-    local player = game.Players.LocalPlayer
-    local screenGui = Instance.new("ScreenGui")
-    screenGui.Name = "CFrameDisplayGui"
-    screenGui.Parent = player:WaitForChild("PlayerGui")
-
-    local textBox = Instance.new("TextBox")
-    textBox.Name = "CFrameTextBox"
-    textBox.Size = UDim2.new(0.6, 0, 0.1, 0)  -- Adjust size as needed
-    textBox.Position = UDim2.new(0.2, 0, 0.2, 0)  -- Adjust position as needed
-    textBox.Text = "Error: If this appearance means the script is outdated!"
-    textBox.ClearTextOnFocus = false
-    textBox.TextScaled = true
-    textBox.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-    textBox.BackgroundTransparency = 0.8
-    textBox.Parent = screenGui
-
-    local ExitButton = Instance.new("TextButton")
-    ExitButton.Name = "CFrameExitButton"
-    ExitButton.Size = UDim2.new(0.05, 0, 0.1, 0)  -- Adjust size as needed
-    ExitButton.Position = UDim2.new(0.3, 0, 0, 0)  -- Adjust position as needed
-    ExitButton.Text = "<X>"
-    ExitButton.TextScaled = true
-    ExitButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-    ExitButton.BackgroundTransparency = 0.8
-    ExitButton.Font = Enum.Font.PatrickHand
-    ExitButton.Parent = screenGui
-
-    ExitButton.MouseButton1Click:Connect(function()
-        screenGui:Destroy()
-    end)
-
-    local function updateCFrame()
-        local character = player.Character or player.CharacterAdded:Wait()
-        local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
-        
-        local cframe = humanoidRootPart.CFrame
-        textBox.Text = " .. tostring(cframe.Position) .. "
-    end
-
-    game:GetService("RunService").Heartbeat:Connect(updateCFrame)
-end
-
 -- Close of Function Box --
 
 PlusButton.Parent = ScreenGui
@@ -169,11 +126,37 @@ button2.TextScaled = true
 button2.Position = UDim2.new(0.045, 0, 0, 0)
 button2.TextColor3 = Color3.fromRGB(255, 255, 255)
 button2.Font = Enum.Font.PatrickHand
-button2.Text = "CFrame Reader: Position"
+button2.Text = "Find Parent/RemoteEvents/HisChild"
 
 button2.MouseButton1Click:Connect(function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/RobloxScript_1/main/UISound"))()
-    CFramePositionReader1()
+
+    local function findRemoteEvents(parent, path)
+    for _, child in pairs(parent:GetChildren()) do
+        local currentPath = path .. child.Name
+        
+        if child:IsA("RemoteEvent") then
+            -- Print the RemoteEvent details
+            local childNames = {}
+            for _, subChild in pairs(child:GetChildren()) do
+                table.insert(childNames, subChild.Name)
+            end
+            
+            local childList = #childNames > 0 and table.concat(childNames, ", ") or "None"
+            print(string.format("Remote Event Found: %s, Inside: %s, His Child: %s", child.Name, path, childList))
+        end
+        
+        -- Recursively search in children
+        findRemoteEvents(child, currentPath .. ".")
+    end
+end
+
+-- Start the search from ReplicatedStorage and StarterPack
+local replicatedStorage = game:GetService("ReplicatedStorage")
+local starterPack = game:GetService("StarterPack")
+
+findRemoteEvents(replicatedStorage, "ReplicatedStorage.")
+findRemoteEvents(starterPack, "StarterPack.")
 end)
 
 local button3 = Instance.new("TextButton")
@@ -217,11 +200,28 @@ button5.TextScaled = true
 button5.Position = UDim2.new(0.165, 0, 0, 0)
 button5.TextColor3 = Color3.fromRGB(255, 255, 255)
 button5.Font = Enum.Font.PatrickHand
-button5.Text = "Tween: Part/HumanoidRootPart/Head"
+button5.Text = "Find All Remote Event Name"
 
 button5.MouseButton1Click:Connect(function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/RobloxScript_1/main/UISound"))()
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/NganHa2k3/RobloxScript/main2/Part_V1'))()
+    local function findRemoteEvents(parent, path)
+    for _, child in pairs(parent:GetChildren()) do
+        local currentPath = path .. child.Name
+        
+        if child:IsA("RemoteEvent") then
+            print(string.format("Remote Event Found: %s, Inside: %s", child.Name, path))
+        end
+        
+        -- Recursively search in children
+        findRemoteEvents(child, currentPath .. ".")
+    end
+end
+
+-- Start the search from ReplicatedStorage and StarterPack
+local replicatedStorage = game:GetService("ReplicatedStorage")
+local starterPack = game:GetService("StarterPack")
+
+findRemoteEvents(replicatedStorage, "ReplicatedStorage.")
+findRemoteEvents(starterPack, "StarterPack.")
 end)
 
 local button6 = Instance.new("TextButton")
@@ -267,3 +267,12 @@ local CoreGui = game:GetService("StarterGui")
         Text = " This is a bunch of useful tools !",
         Duration = 2,
 })
+
+-- Chatted --
+
+local args = {
+    [1] = "✦🄰🅄🅃🄾❖ Hello, I will 「C░h░e░a░t░」.",
+    [2] = "All"
+}
+
+game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))

@@ -270,8 +270,10 @@ local CoreGui = game:GetService("StarterGui")
 
 -- Chatted --
 
+local players = game.Players.LocalPlayer
+
 local args = {
-    [1] = "✦Auto: Hello, I will「Cheat」.",
+    [1] = "۝ " .. players.Name .. ": Hello, I will「Cheat」.",
     [2] = "All"
 }
 

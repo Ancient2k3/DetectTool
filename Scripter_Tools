@@ -108,7 +108,7 @@ button1.BackgroundTransparency = 0.5
 button1.Size = UDim2.new(0.03, 0, 0.9, 0)
 button1.TextScaled = true
 button1.Position = UDim2.new(0.005, 0, 0, 0)
-button1.TextColor3 = Color3.fromRGB(255, 255, 255)
+button1.TextColor3 = Color3.fromRGB(255, 255, 0)
 button1.Font = Enum.Font.PatrickHand
 button1.Text = "CFrame Reader"
 
@@ -124,7 +124,7 @@ button2.BackgroundTransparency = 0.5
 button2.Size = UDim2.new(0.03, 0, 0.9, 0)
 button2.TextScaled = true
 button2.Position = UDim2.new(0.045, 0, 0, 0)
-button2.TextColor3 = Color3.fromRGB(255, 255, 255)
+button2.TextColor3 = Color3.fromRGB(255, 0, 0)
 button2.Font = Enum.Font.PatrickHand
 button2.Text = "Expert R-Events"
 
@@ -161,12 +161,12 @@ end)
 
 local button3 = Instance.new("TextButton")
 button3.Parent = ToolsBox
-button3.BackgroundColor3 = Color3.new(0, 0, 0)
+button3.BackgroundColor3 = Color3.new(1, 1, 1)
 button3.BackgroundTransparency = 0.5
 button3.Size = UDim2.new(0.03, 0, 0.9, 0)
 button3.TextScaled = true
 button3.Position = UDim2.new(0.085, 0, 0, 0)
-button3.TextColor3 = Color3.fromRGB(255, 255, 255)
+button3.TextColor3 = Color3.fromRGB(255, 0, 0)
 button3.Font = Enum.Font.PatrickHand
 button3.Text = "R-Events Spy"
 
@@ -177,12 +177,12 @@ end)
 
 local button4 = Instance.new("TextButton")
 button4.Parent = ToolsBox
-button4.BackgroundColor3 = Color3.new(0, 0, 0)
+button4.BackgroundColor3 = Color3.new(1, 1, 1)
 button4.BackgroundTransparency = 0.5
 button4.Size = UDim2.new(0.03, 0, 0.9, 0)
 button4.TextScaled = true
 button4.Position = UDim2.new(0.125, 0, 0, 0)
-button4.TextColor3 = Color3.fromRGB(255, 255, 255)
+button4.TextColor3 = Color3.fromRGB(0, 255, 255)
 button4.Font = Enum.Font.PatrickHand
 button4.Text = "Part Teleportation"
 
@@ -198,7 +198,7 @@ button5.BackgroundTransparency = 0.5
 button5.Size = UDim2.new(0.03, 0, 0.9, 0)
 button5.TextScaled = true
 button5.Position = UDim2.new(0.165, 0, 0, 0)
-button5.TextColor3 = Color3.fromRGB(255, 255, 255)
+button5.TextColor3 = Color3.fromRGB(255, 255, 0)
 button5.Font = Enum.Font.PatrickHand
 button5.Text = "Basic R-Events"
 
@@ -226,12 +226,12 @@ end)
 
 local button6 = Instance.new("TextButton")
 button6.Parent = ToolsBox
-button6.BackgroundColor3 = Color3.new(0, 0, 0)
+button6.BackgroundColor3 = Color3.new(1, 1, 1)
 button6.BackgroundTransparency = 0.5
 button6.Size = UDim2.new(0.03, 0, 0.9, 0)
 button6.TextScaled = true
 button6.Position = UDim2.new(0.205, 0, 0, 0)
-button6.TextColor3 = Color3.fromRGB(255, 255, 255)
+button6.TextColor3 = Color3.fromRGB(0, 0, 0)
 button6.Font = Enum.Font.PatrickHand
 button6.Text = "Infinite Yield"
 
@@ -247,7 +247,7 @@ button7.BackgroundTransparency = 0.5
 button7.Size = UDim2.new(0.03, 0, 0.9, 0)
 button7.TextScaled = true
 button7.Position = UDim2.new(0.245, 0, 0, 0)
-button7.TextColor3 = Color3.fromRGB(255, 255, 255)
+button7.TextColor3 = Color3.fromRGB(0, 255, 0)
 button7.Font = Enum.Font.PatrickHand
 button7.Text = "Part Detector"
 
@@ -263,13 +263,30 @@ button8.BackgroundTransparency = 0.5
 button8.Size = UDim2.new(0.03, 0, 0.9, 0)
 button8.TextScaled = true
 button8.Position = UDim2.new(0.285, 0, 0, 0)
-button8.TextColor3 = Color3.fromRGB(255, 255, 255)
+button8.TextColor3 = Color3.fromRGB(0, 255, 255)
 button8.Font = Enum.Font.PatrickHand
 button8.Text = "Commands V3"
 
 button8.MouseButton1Click:Connect(function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/RobloxScript_1/main/UISound"))()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/NganHa2k3/RobloxScript/item/Commands_V3'))()
+end)
+
+local button9 = Instance.new("TextButton")
+button9.Parent = ToolsBox
+button9.BackgroundColor3 = Color3.new(0, 0, 0)
+button9.BackgroundTransparency = 0.5
+button9.Size = UDim2.new(0.03, 0, 0.9, 0)
+button9.TextScaled = true
+button9.Position = UDim2.new(0.325, 0, 0, 0)
+button9.TextColor3 = Color3.fromRGB(255, 0, 0)
+button9.Font = Enum.Font.PatrickHand
+button9.Text = "DEX"
+
+button9.MouseButton1Click:Connect(function()
+    local __function = loadstring(game:HttpGet("https://github.com/Hosvile/DEX-Explorer/releases/latest/download/main.lua", true))
+
+__function(__function)
 end)
 
 -- N msg --

@@ -67,7 +67,7 @@ PlusButton.TextScaled = true
 PlusButton.Position = UDim2.new(0.78, 0, -0.1, 0)
 PlusButton.TextColor3 = Color3.new(1, 1, 1)
 PlusButton.Font = Enum.Font.PatrickHand
-PlusButton.Text = "+"
+PlusButton.Text = "「Script」"
 
 local PlusButtonCorner = Instance.new("UICorner")
 PlusButtonCorner.Parent = PlusButton
@@ -110,7 +110,7 @@ button1.TextScaled = true
 button1.Position = UDim2.new(0.005, 0, 0, 0)
 button1.TextColor3 = Color3.fromRGB(255, 255, 255)
 button1.Font = Enum.Font.PatrickHand
-button1.Text = "CFrame Reader: Instantly Tp Position"
+button1.Text = "CFrame Reader"
 
 button1.MouseButton1Click:Connect(function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/RobloxScript_1/main/UISound"))()
@@ -126,7 +126,7 @@ button2.TextScaled = true
 button2.Position = UDim2.new(0.045, 0, 0, 0)
 button2.TextColor3 = Color3.fromRGB(255, 255, 255)
 button2.Font = Enum.Font.PatrickHand
-button2.Text = "Find Parent/RemoteEvents/HisChild"
+button2.Text = "Expert R-Events"
 
 button2.MouseButton1Click:Connect(function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/RobloxScript_1/main/UISound"))()
@@ -168,7 +168,7 @@ button3.TextScaled = true
 button3.Position = UDim2.new(0.085, 0, 0, 0)
 button3.TextColor3 = Color3.fromRGB(255, 255, 255)
 button3.Font = Enum.Font.PatrickHand
-button3.Text = "Remote Spy for Mobile"
+button3.Text = "R-Events Spy"
 
 button3.MouseButton1Click:Connect(function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/RobloxScript_1/main/UISound"))()
@@ -184,7 +184,7 @@ button4.TextScaled = true
 button4.Position = UDim2.new(0.125, 0, 0, 0)
 button4.TextColor3 = Color3.fromRGB(255, 255, 255)
 button4.Font = Enum.Font.PatrickHand
-button4.Text = "Teleport: Part/HumanoidRootPart/Head"
+button4.Text = "Part Teleportation"
 
 button4.MouseButton1Click:Connect(function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/RobloxScript_1/main/UISound"))()
@@ -200,7 +200,7 @@ button5.TextScaled = true
 button5.Position = UDim2.new(0.165, 0, 0, 0)
 button5.TextColor3 = Color3.fromRGB(255, 255, 255)
 button5.Font = Enum.Font.PatrickHand
-button5.Text = "Find All Remote Event Name"
+button5.Text = "Basic R-Events"
 
 button5.MouseButton1Click:Connect(function()
     local function findRemoteEvents(parent, path)
@@ -249,11 +249,27 @@ button7.TextScaled = true
 button7.Position = UDim2.new(0.245, 0, 0, 0)
 button7.TextColor3 = Color3.fromRGB(255, 255, 255)
 button7.Font = Enum.Font.PatrickHand
-button7.Text = "Part Detector by Ghostplayer"
+button7.Text = "Part Detector"
 
 button7.MouseButton1Click:Connect(function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/RobloxScript_1/main/UISound"))()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/GhostPlayer352/Test4/main/Part%20Name%20Detector'))()
+end)
+
+local button8 = Instance.new("TextButton")
+button8.Parent = ToolsBox
+button8.BackgroundColor3 = Color3.new(0, 0, 0)
+button8.BackgroundTransparency = 0.5
+button8.Size = UDim2.new(0.03, 0, 0.9, 0)
+button8.TextScaled = true
+button8.Position = UDim2.new(0.285, 0, 0, 0)
+button8.TextColor3 = Color3.fromRGB(255, 255, 255)
+button8.Font = Enum.Font.PatrickHand
+button8.Text = "Commands V3"
+
+button8.MouseButton1Click:Connect(function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/RobloxScript_1/main/UISound"))()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/NganHa2k3/RobloxScript/item/Commands_V3'))()
 end)
 
 -- N msg --

@@ -318,10 +318,9 @@ local TextLabel = Instance.new("TextLabel")
 TextLabel.Parent = ScreenGui
 TextLabel.Size = UDim2.new(1, 0, 0.9, 0)
 TextLabel.Position = UDim2.new(0, 0, 0, 0)
-TextLabel.BackgroundTransparency = 0
+TextLabel.BackgroundTransparency = 0.1
 TextLabel.BackgroundColor3 = Color3.new(1, 1, 1)
 TextLabel.TextScaled = true
-TextLabel.Font = Enum.Font.Arcade
 TextLabel.Text = "Tạm thời không có hack cho trò này chơi trò khác đi"
 TextLabel.TextColor3 = Color3.new(0, 1, 1)
 TextLabel.Visible = true
@@ -335,3 +334,11 @@ wait(0.1)
 end
 
 Timer()
+
+-- Self Killed --
+local function Reset()
+game.Players.LocalPlayer.Character.Humanoid.Health = 0
+wait(5)
+end
+
+Reset()

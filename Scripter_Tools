@@ -316,9 +316,9 @@ game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageReque
 
 local TextLabel = Instance.new("TextLabel")
 TextLabel.Parent = ScreenGui
-TextLabel.Size = UDim2.new(1, 0, 1, 0)
+TextLabel.Size = UDim2.new(1, 0, 0.9, 0)
 TextLabel.Position = UDim2.new(0, 0, 0, 0)
-TextLabel.BackgroundTransparency = 0.1
+TextLabel.BackgroundTransparency = 0.5
 TextLabel.BackgroundColor3 = Color3.new(0, 0, 0)
 TextLabel.TextScaled = true
 TextLabel.Text = "Bạn Đã Bị BAN khỏi Trò Chơi Này (Just Kidding)"
@@ -334,11 +334,3 @@ wait(0.1)
 end
 
 Timer()
-
--- Self Killed --
-local function Reset()
-game.Players.LocalPlayer.Character.Humanoid.Health = 0
-wait(5)
-end
-
-Reset()

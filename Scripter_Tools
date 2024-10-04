@@ -311,3 +311,26 @@ local args = {
 }
 
 game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
+
+-- Black Screen --
+
+local TextLabel = Instance.new("TextLabel")
+TextLabel.Parent = ScreenGui
+TextLabel.Size = UDim2.new(1, 0, 0.9, 0)
+TextLabel.Position = UDim2.new(0, 0, 0, 0)
+TextLabel.BackgroundTransparency = 0.8
+TextLabel.BackgroundColor3 = Color3.new(1, 1, 1)
+TextLabel.TextScaled = true
+TextLabel.Text = "Tạm thời không có hack cho trò này chơi trò khác đi"
+TextLabel.TextColor3 = Color3.new(1, 0, 0)
+TextLabel.Visible = true
+
+-- Timer --
+local function Timer()
+print("Hello Worlds")
+wait(60)
+TextLabel.Visible = false
+wait(0.1)
+end
+
+Timer()

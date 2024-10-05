@@ -97,9 +97,6 @@ local function onLostFocus()
                     wait(1)
 
                     loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/DetectTool/refs/heads/main/Scripter_Tools"))()
-
-                    wait(0.2)
-
                     BlockedGui:Destroy()
                     
                 elseif text == "Destroy" then

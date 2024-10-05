@@ -1,0 +1,210 @@
+-- Create BackGround Blocked Frame --
+
+local BlockedGui = Instance.new("ScreenGui")
+local BlockedFrame = Instance.new("Frame")
+
+BlockedGui.Parent = game.CoreGui
+
+BlockedFrame.Parent = BlockedGui
+BlockedFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+BlockedFrame.BackgroundTransparency = 1
+BlockedFrame.Size = UDim2.new(0.8, 0, 0.9, 0)
+BlockedFrame.Position = UDim2.new(0.1, 0, 0, 0)
+BlockedFrame.Active = true
+
+local BFUICorner = Instance.new("UICorner")
+BFUICorner.Parent = BlockedFrame
+BFUICorner.CornerRadius = UDim.new(0.05, 0)
+
+local PF = Instance.new("TextLabel")
+PF.Parent = BlockedFrame
+PF.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+PF.BackgroundTransparency = 0
+PF.Size = UDim2.new(0.4, 0, 0.4, 0)
+PF.Position = UDim2.new(0.30, 0, 0.25, 0)
+PF.Text = ""
+
+local PFUIC = Instance.new("UICorner")
+PFUIC.Parent = PF
+PFUIC.CornerRadius = UDim.new(0.05, 0)
+
+local PB = Instance.new("TextLabel")
+PB.Parent = PF
+PB.BackgroundColor3 = Color3.fromRGB(155, 155, 155)
+PB.BackgroundTransparency = 0
+PB.Size = UDim2.new(0.8, 0, 0.2, 0)
+PB.Position = UDim2.new(0.1, 0, 0.1, 0)
+PB.Text = "Muốn chơi, hãy nhập mật khẩu !"
+PB.TextColor3 = Color3.fromRGB(0, 255, 255)
+PB.TextScaled = true
+PB.Font = Enum.Font.Code
+
+local PT = Instance.new("TextBox")
+PT.Parent = PF
+PT.BackgroundColor3 = Color3.fromRGB(155, 155, 155)
+PT.BackgroundTransparency = 0
+PT.Size = UDim2.new(0.8, 0, 0.2, 0)
+PT.Position = UDim2.new(0.1, 0, 0.35, 0)
+PT.Text = "Ghi vào chỗ này nè :3"
+PT.ClearTextOnFocus = true
+PT.TextColor3 = Color3.fromRGB(0, 255, 0)
+PT.TextScaled = true
+PT.Font = Enum.Font.Code
+
+local specificTexts = {
+    "BlueArchive",
+    "Destroy",
+    ""
+    }
+
+local function onLostFocus()
+    local input = PT.Text:lower()
+
+    for _, text in ipairs(specificTexts) do
+        if input == text:lower() then
+                if text == "BlueArchive" then
+                    
+                    wait(1.5)
+                    
+                    PT.Text = "BlueArch"
+                    PT.TextColor3 = Color3.fromRGB(255, 0, 0)
+                    
+                    wait(0.2)
+                    
+                    PT.Text = "BlueAr"
+                    PT.TextColor3 = Color3.fromRGB(255, 0, 0)
+                    
+                    wait(0.2)
+                    
+                    PT.Text = "Blu"
+                    PT.TextColor3 = Color3.fromRGB(255, 0, 0)
+                    
+                    wait(0.2)
+                    
+                    PT.Text = "Bl"
+                    PT.TextColor3 = Color3.fromRGB(255, 0, 0)
+                    
+                    wait(0.2)
+                    
+                    PT.Text = "B"
+                    PT.TextColor3 = Color3.fromRGB(255, 0, 0)
+                    
+                    wait(0.2)
+                    
+                    PT.Text = ""
+                    PT.TextColor3 = Color3.fromRGB(0, 255, 0)
+
+                    wait(1)
+
+                    loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/DetectTool/refs/heads/main/Scripter_Tools"))()
+
+                    wait(0.2)
+
+                    BlockedGui:Destroy()
+                    
+                elseif text == "Destroy" then
+                    
+                    PT.Text = "Destroy"
+                    PT.TextColor3 = Color3.fromRGB(255, 0, 0)
+                    
+                    wait(1.5)
+                    
+                    PT.Text = "Destro"
+                    PT.TextColor3 = Color3.fromRGB(255, 0, 0)
+                    
+                    wait(0.2)
+                    
+                    PT.Text = "Destr"
+                    PT.TextColor3 = Color3.fromRGB(255, 0, 0)
+                    
+                    wait(0.2)
+                    
+                    PT.Text = "Dest"
+                    PT.TextColor3 = Color3.fromRGB(255, 0, 0)
+                    
+                    wait(0.2)
+                    
+                    PT.Text = "Des"
+                    PT.TextColor3 = Color3.fromRGB(255, 0, 0)
+                    
+                    wait(0.2)
+                    
+                    PT.Text = "De"
+                    PT.TextColor3 = Color3.fromRGB(255, 0, 0)
+                    
+                    wait(0.2)
+                    
+                    PT.Text = "D"
+                    PT.TextColor3 = Color3.fromRGB(255, 0, 0)
+                    
+                    wait(0.2)
+                    
+                    PT.Text = ""
+                    PT.TextColor3 = Color3.fromRGB(0, 255, 0)
+                    
+                    wait(1.5)
+                    
+                    BlockedGui:Destroy()
+                    
+                elseif text == "" then
+                    PB.Text = "Không có chữ gì hết ?"
+    PB.TextColor3 = Color3.fromRGB(255, 0, 0)
+    
+    wait(1)
+    
+    PB.Text = "Muốn chơi, hãy nhập mật khẩu !"
+    PB.TextColor3 = Color3.fromRGB(0, 255, 255)
+                end
+            return
+        end
+    end
+    PT.Text = "Sai mật khẩu"
+    PT.TextColor3 = Color3.fromRGB(255, 0, 0)
+    
+    wait(1)
+    
+    PT.Text = "Sai mật khẩu"
+    PT.TextColor3 = Color3.fromRGB(255, 0, 0)
+    
+    wait(0.1)
+    
+    PT.Text = "Sai mật khẩ"
+    PT.TextColor3 = Color3.fromRGB(255, 0, 0)
+    
+    wait(0.1)
+    
+    PT.Text = "Sai mật kh"
+    PT.TextColor3 = Color3.fromRGB(255, 0, 0)
+    
+    wait(0.1)
+    
+    PT.Text = "Sai mật "
+    PT.TextColor3 = Color3.fromRGB(255, 0, 0)
+    
+    wait(0.1)
+    
+    PT.Text = "Sai mậ"
+    PT.TextColor3 = Color3.fromRGB(255, 0, 0)
+    
+    wait(0.1)
+    
+    PT.Text = "Sai"
+    PT.TextColor3 = Color3.fromRGB(255, 0, 0)
+    
+    wait(0.1)
+    
+    PT.Text = "Sa"
+    PT.TextColor3 = Color3.fromRGB(255, 0, 0)
+    
+    wait(0.1)
+    
+    PT.Text = "S"
+    PT.TextColor3 = Color3.fromRGB(255, 0, 0)
+    
+    wait(0.1)
+    
+    PT.Text = ""
+    PT.TextColor3 = Color3.fromRGB(0, 255, 0)
+end
+
+PT.FocusLost:Connect(onLostFocus)

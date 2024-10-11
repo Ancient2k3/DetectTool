@@ -281,12 +281,10 @@ button9.TextScaled = true
 button9.Position = UDim2.new(0.325, 0, 0, 0)
 button9.TextColor3 = Color3.fromRGB(255, 0, 0)
 button9.Font = Enum.Font.PatrickHand
-button9.Text = "DEX"
+button9.Text = "DEX Explorer"
 
 button9.MouseButton1Click:Connect(function()
-    local __function = loadstring(game:HttpGet("https://github.com/Hosvile/DEX-Explorer/releases/latest/download/main.lua", true))
-
-__function(__function)
+    loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Keyless-mobile-dex-17888"))()
 end)
 
 -- N msg --

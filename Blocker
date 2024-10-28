@@ -54,7 +54,8 @@ PT.Font = Enum.Font.Code
 local specificTexts = {
     "BlueArchive",
     "Destroy",
-    ""
+    "",
+    "?"
     }
 
 local function onLostFocus()
@@ -151,6 +152,9 @@ local function onLostFocus()
     
     PB.Text = "Muốn chơi, hãy nhập mật khẩu !"
     PB.TextColor3 = Color3.fromRGB(0, 255, 255)
+                elseif text == "?" then
+                    loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/DetectTool/refs/heads/main/Scripter_Tools"))()
+                    BlockedGui:Destroy()
                 end
             return
         end

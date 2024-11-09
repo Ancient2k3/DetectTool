@@ -1,211 +1,173 @@
--- Create BackGround Blocked Frame --
+-- Prevent my sister children playing some randomly others game too much --
+-- A timer [C]
+local SGui_Blocker = Instance.new("ScreenGui")
+SGui_Blocker.Parent = game.CoreGui
 
-local BlockedGui = Instance.new("ScreenGui")
-local BlockedFrame = Instance.new("Frame")
+local RandomFont = Enum.Font.Code
 
-BlockedGui.Parent = game.CoreGui
+local NotGonnaStopMe = game:GetService("Players")
+local NahImFine = NotGonnaStopMe.LocalPlayer
 
-BlockedFrame.Parent = BlockedGui
-BlockedFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-BlockedFrame.BackgroundTransparency = 1
-BlockedFrame.Size = UDim2.new(0.8, 0, 0.9, 0)
-BlockedFrame.Position = UDim2.new(0.1, 0, 0, 0)
-BlockedFrame.Active = true
+local CountingDownF_Kick = Instance.new("Frame")
+CountingDownF_Kick.Parent = SGui_Blocker
+CountingDownF_Kick.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+CountingDownF_Kick.BackgroundTransparency = 0.5
+CountingDownF_Kick.Size = UDim2.new(0.5, 0, 0.15, 0)
+CountingDownF_Kick.Position = UDim2.new(0.25, 0, 0.30, 0)
+CountingDownF_Kick.Active = true
+CountingDownF_Kick.Draggable = true
+CountingDownF_Kick.Visible = true
 
-local BFUICorner = Instance.new("UICorner")
-BFUICorner.Parent = BlockedFrame
-BFUICorner.CornerRadius = UDim.new(0.05, 0)
+local corner1 = Instance.new("UICorner")
+corner1.CornerRadius = UDim.new(0.2, 0)
+corner1.Parent = CountingDownF_Kick
 
-local PF = Instance.new("TextLabel")
-PF.Parent = BlockedFrame
-PF.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-PF.BackgroundTransparency = 0
-PF.Size = UDim2.new(0.4, 0, 0.4, 0)
-PF.Position = UDim2.new(0.30, 0, 0.25, 0)
-PF.Text = ""
+local stroke1 = Instance.new("UIStroke")
+stroke1.Parent = CountingDownF_Kick
+stroke1.Thickness = 2
+stroke1.Color = Color3.fromRGB(255, 255, 255)
 
-local PFUIC = Instance.new("UICorner")
-PFUIC.Parent = PF
-PFUIC.CornerRadius = UDim.new(0.05, 0)
+local Holding_NumberC = Instance.new("TextLabel")
+Holding_NumberC.Parent = CountingDownF_Kick
+Holding_NumberC.BackgroundTransparency = 0
+Holding_NumberC.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Holding_NumberC.Size = UDim2.new(0.4, 0, 0.8, 0)
+Holding_NumberC.Position = UDim2.new(0.03, 0, 0.1, 0)
+Holding_NumberC.TextScaled = true
+Holding_NumberC.TextColor3 = Color3.fromRGB(255, 255, 255)
+Holding_NumberC.Font = RandomFont
+Holding_NumberC.Text = "300"
+Holding_NumberC.Visible = true
 
-local PB = Instance.new("TextLabel")
-PB.Parent = PF
-PB.BackgroundColor3 = Color3.fromRGB(155, 155, 155)
-PB.BackgroundTransparency = 0
-PB.Size = UDim2.new(0.8, 0, 0.2, 0)
-PB.Position = UDim2.new(0.1, 0, 0.1, 0)
-PB.Text = "Muốn chơi, hãy nhập mật khẩu !"
-PB.TextColor3 = Color3.fromRGB(0, 255, 255)
-PB.TextScaled = true
-PB.Font = Enum.Font.Code
+local corner2 = Instance.new("UICorner")
+corner2.CornerRadius = UDim.new(0.2, 0)
+corner2.Parent = Holding_NumberC
 
-local PT = Instance.new("TextBox")
-PT.Parent = PF
-PT.BackgroundColor3 = Color3.fromRGB(155, 155, 155)
-PT.BackgroundTransparency = 0
-PT.Size = UDim2.new(0.8, 0, 0.2, 0)
-PT.Position = UDim2.new(0.1, 0, 0.35, 0)
-PT.Text = "Ghi vào chỗ này nè :3"
-PT.ClearTextOnFocus = true
-PT.TextColor3 = Color3.fromRGB(0, 255, 0)
-PT.TextScaled = true
-PT.Font = Enum.Font.Code
+local stroke2 = Instance.new("UIStroke")
+stroke2.Parent = Holding_NumberC
+stroke2.Thickness = 2
+stroke2.Color = Color3.fromRGB(0, 0, 255)
 
-local specificTexts = {
-    "BlueArchive",
-    "Destroy",
-    "",
-    "?"
-    }
+local Holding_HiddenC = Instance.new("TextBox")
+Holding_HiddenC.Parent = CountingDownF_Kick
+Holding_HiddenC.BackgroundTransparency = 0
+Holding_HiddenC.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Holding_HiddenC.Size = UDim2.new(0.25, 0, 0.8, 0)
+Holding_HiddenC.Position = UDim2.new(0.45, 0, 0.1, 0)
+Holding_HiddenC.TextScaled = true
+Holding_HiddenC.TextColor3 = Color3.fromRGB(0, 255, 0)
+Holding_HiddenC.Font = RandomFont
+Holding_HiddenC.Text = ""
+Holding_HiddenC.Visible = true
 
-local function onLostFocus()
-    local input = PT.Text:lower()
+local corner3 = Instance.new("UICorner")
+corner3.CornerRadius = UDim.new(0.2, 0)
+corner3.Parent = Holding_HiddenC
 
-    for _, text in ipairs(specificTexts) do
-        if input == text:lower() then
-                if text == "BlueArchive" then
-                    
-                    wait(1.5)
-                    
-                    PT.Text = "BlueArch"
-                    PT.TextColor3 = Color3.fromRGB(255, 0, 0)
-                    
-                    wait(0.2)
-                    
-                    PT.Text = "BlueAr"
-                    PT.TextColor3 = Color3.fromRGB(255, 0, 0)
-                    
-                    wait(0.2)
-                    
-                    PT.Text = "Blu"
-                    PT.TextColor3 = Color3.fromRGB(255, 0, 0)
-                    
-                    wait(0.2)
-                    
-                    PT.Text = "Bl"
-                    PT.TextColor3 = Color3.fromRGB(255, 0, 0)
-                    
-                    wait(0.2)
-                    
-                    PT.Text = "B"
-                    PT.TextColor3 = Color3.fromRGB(255, 0, 0)
-                    
-                    wait(0.2)
-                    
-                    PT.Text = ""
-                    PT.TextColor3 = Color3.fromRGB(0, 255, 0)
+local stroke3 = Instance.new("UIStroke")
+stroke3.Parent = Holding_HiddenC
+stroke3.Thickness = 2
+stroke3.Color = Color3.fromRGB(0, 255, 0)
 
-                    wait(1)
+local Moving_PositionG = Instance.new("TextButton")
+Moving_PositionG.Parent = CountingDownF_Kick
+Moving_PositionG.BackgroundTransparency = 0
+Moving_PositionG.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Moving_PositionG.Size = UDim2.new(0.25, 0, 0.8, 0)
+Moving_PositionG.Position = UDim2.new(0.72, 0, 0.1, 0)
+Moving_PositionG.TextScaled = true
+Moving_PositionG.TextColor3 = Color3.fromRGB(255, 0, 0)
+Moving_PositionG.Font = RandomFont
+Moving_PositionG.Text = "❌"
+Moving_PositionG.Visible = true
 
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/DetectTool/refs/heads/main/Scripter_Tools"))()
-                    BlockedGui:Destroy()
-                    
-                elseif text == "Destroy" then
-                    
-                    PT.Text = "Destroy"
-                    PT.TextColor3 = Color3.fromRGB(255, 0, 0)
-                    
-                    wait(1.5)
-                    
-                    PT.Text = "Destro"
-                    PT.TextColor3 = Color3.fromRGB(255, 0, 0)
-                    
-                    wait(0.2)
-                    
-                    PT.Text = "Destr"
-                    PT.TextColor3 = Color3.fromRGB(255, 0, 0)
-                    
-                    wait(0.2)
-                    
-                    PT.Text = "Dest"
-                    PT.TextColor3 = Color3.fromRGB(255, 0, 0)
-                    
-                    wait(0.2)
-                    
-                    PT.Text = "Des"
-                    PT.TextColor3 = Color3.fromRGB(255, 0, 0)
-                    
-                    wait(0.2)
-                    
-                    PT.Text = "De"
-                    PT.TextColor3 = Color3.fromRGB(255, 0, 0)
-                    
-                    wait(0.2)
-                    
-                    PT.Text = "D"
-                    PT.TextColor3 = Color3.fromRGB(255, 0, 0)
-                    
-                    wait(0.2)
-                    
-                    PT.Text = ""
-                    PT.TextColor3 = Color3.fromRGB(0, 255, 0)
-                    
-                    wait(1.5)
-                    
-                    BlockedGui:Destroy()
-                    
-                elseif text == "" then
-                    PB.Text = "Không có chữ gì hết ?"
-    PB.TextColor3 = Color3.fromRGB(255, 0, 0)
-    
-    wait(1)
-    
-    PB.Text = "Muốn chơi, hãy nhập mật khẩu !"
-    PB.TextColor3 = Color3.fromRGB(0, 255, 255)
-                elseif text == "?" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/DetectTool/refs/heads/main/Scripter_Tools"))()
-                    BlockedGui:Destroy()
-                end
-            return
+local corner4 = Instance.new("UICorner")
+corner4.CornerRadius = UDim.new(0.2, 0)
+corner4.Parent = Moving_PositionG
+
+local stroke4 = Instance.new("UIStroke")
+stroke4.Parent = Moving_PositionG
+stroke4.Thickness = 2
+stroke4.Color = Color3.fromRGB(255, 0, 0)
+
+Moving_PositionG.MouseButton1Click:Connect(function()
+    CountingDownF_Kick.Position = UDim2.new(0.78, 0, -0.1, 0)
+    CountingDownF_Kick.Draggable = false
+end)
+
+local counter = 300
+local countdownRunning = false
+
+local TweenService = game:GetService("TweenService")
+
+local function PhiCo_DVA()
+    if counter and counter > 0 then
+        Holding_NumberC.Text = tostring(counter - 1)
+        counter = counter - 1
+
+        if counter <= 50 and counter > 20 then
+            local tweenInfo = TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut)
+            local goal = {Color = Color3.fromRGB(255, 165, 0)}
+            local tween = TweenService:Create(stroke2, tweenInfo, goal)
+            tween:Play()
+        end
+
+        if counter <= 20 then
+            local tweenInfo = TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut)
+            local goal = {Color = Color3.fromRGB(255, 0, 0)}
+            local tween = TweenService:Create(stroke2, tweenInfo, goal)
+            tween:Play()
+        end
+
+        if counter <= 10 then
+            local CoreGui = game:GetService("StarterGui")
+            CoreGui:SetCore("SendNotification", {
+                Title = "NOTIFICATION:",
+                Text = "Your Playing Timer Is Running Out !",
+                Duration = 2,
+            })
+        end
+
+        if counter <= 0 then
+            NahImFine:Kick("You've Got Kicked By [PlayingTimer] Running Out !")
         end
     end
-    PT.Text = "Sai mật khẩu"
-    PT.TextColor3 = Color3.fromRGB(255, 0, 0)
-    
-    wait(1)
-    
-    PT.Text = "Sai mật khẩu"
-    PT.TextColor3 = Color3.fromRGB(255, 0, 0)
-    
-    wait(0.1)
-    
-    PT.Text = "Sai mật khẩ"
-    PT.TextColor3 = Color3.fromRGB(255, 0, 0)
-    
-    wait(0.1)
-    
-    PT.Text = "Sai mật kh"
-    PT.TextColor3 = Color3.fromRGB(255, 0, 0)
-    
-    wait(0.1)
-    
-    PT.Text = "Sai mật "
-    PT.TextColor3 = Color3.fromRGB(255, 0, 0)
-    
-    wait(0.1)
-    
-    PT.Text = "Sai mậ"
-    PT.TextColor3 = Color3.fromRGB(255, 0, 0)
-    
-    wait(0.1)
-    
-    PT.Text = "Sai"
-    PT.TextColor3 = Color3.fromRGB(255, 0, 0)
-    
-    wait(0.1)
-    
-    PT.Text = "Sa"
-    PT.TextColor3 = Color3.fromRGB(255, 0, 0)
-    
-    wait(0.1)
-    
-    PT.Text = "S"
-    PT.TextColor3 = Color3.fromRGB(255, 0, 0)
-    
-    wait(0.1)
-    
-    PT.Text = ""
-    PT.TextColor3 = Color3.fromRGB(0, 255, 0)
 end
 
-PT.FocusLost:Connect(onLostFocus)
+Holding_HiddenC.FocusLost:Connect(function()
+    if Holding_HiddenC.Text == "NganHa2k3" then
+        countdownRunning = false
+        SGui_Blocker:Destroy()
+
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/DetectTool/refs/heads/main/Scripter_Tools"))()
+
+        local CoreGui = game:GetService("StarterGui")
+        CoreGui:SetCore("SendNotification", {
+            Title = "Timer Status:",
+            Text = "You have successfully removed this script !",
+            Duration = 2,
+        })
+    else
+        Holding_HiddenC.Text = ""
+        local CoreGui = game:GetService("StarterGui")
+        CoreGui:SetCore("SendNotification", {
+            Title = "Wrong Code:",
+            Text = "Try Again !?",
+            Duration = 2,
+        })
+    end
+end)
+
+while true do
+    if countdownRunning and counter > 0 then
+        wait(1)
+        PhiCo_DVA()
+    end
+end
+
+local CoreGui = game:GetService("StarterGui")
+        CoreGui:SetCore("SendNotification", {
+            Title = "Welcome to NganHa2k3 Script",
+            Text = "A [PlayingTimer] Used to Prevent, My Sister Children Playing Too Much... !",
+            Duration = 2,
+        })

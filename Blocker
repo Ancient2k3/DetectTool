@@ -163,6 +163,7 @@ while true do
         wait(1)
         PhiCo_DVA()
     end
+    wait(0.1)
 end
 
 local CoreGui = game:GetService("StarterGui")

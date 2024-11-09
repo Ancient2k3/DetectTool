@@ -96,7 +96,7 @@ Moving_PositionG.MouseButton1Click:Connect(function()
 end)
 
 local counter = 300
-local countdownRunning = false
+local countdownRunning = true
 
 local TweenService = game:GetService("TweenService")
 

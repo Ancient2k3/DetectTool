@@ -284,7 +284,8 @@ button9.Font = Enum.Font.PatrickHand
 button9.Text = "DEX Explorer"
 
 button9.MouseButton1Click:Connect(function()
-    loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Keyless-mobile-dex-17888"))()
+    loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Classic-Dex-Explorer-21009"))()
+    print("So sad that REDzHUB have removed Keyless Version Of Dex Explorer for mobile")
 end)
 
 -- N msg --

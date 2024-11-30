@@ -281,11 +281,11 @@ button9.TextScaled = true
 button9.Position = UDim2.new(0.325, 0, 0, 0)
 button9.TextColor3 = Color3.fromRGB(255, 0, 0)
 button9.Font = Enum.Font.PatrickHand
-button9.Text = "DEX Explorer"
+button9.Text = "DEX Explorer for Mobile"
 
 button9.MouseButton1Click:Connect(function()
-    loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Classic-Dex-Explorer-21009"))()
-    print("So sad that REDzHUB have removed Keyless Version Of Dex Explorer for mobile")
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/RobloxScript/refs/heads/item/Dex_Explorer_For_Mobile"))()
+    print("So happy it return, then i create a backup version.")
 end)
 
 -- N msg --

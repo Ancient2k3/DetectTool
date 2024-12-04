@@ -310,3 +310,12 @@ local args = {
 }
 
 game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
+
+-- Keep Game Script --
+loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/Tensura/refs/heads/powerful/KeepScript_OPEN"))()
+
+if _G.ExecuteScriptAfterTeleport then
+    _G.ExecuteScriptAfterTeleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/NganHa2k3/Tensura/slime/WorldsVoice_B'))()")
+else
+    print("not found _G.ExecuteScriptAfterTeleport somewhere")
+end

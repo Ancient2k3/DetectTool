@@ -1,0 +1,31 @@
+local F9ScreenGui = Instance.new("ScreenGui")
+F9ScreenGui.Name = "EmptyScript"
+F9ScreenGui.Parent = game.CoreGui
+
+local F9B = Instance.new("TextButton")
+F9B.Parent = F9ScreenGui
+F9B.BackgroundColor3 = Color3.new(0, 0, 0)
+F9B.BackgroundTransparency = 0.8
+F9B.Size = UDim2.new(0.05, 0, 0.1, 0)
+F9B.Position = UDim2.new(0.3, 0, -0.15, 0)
+F9B.TextScaled = true
+F9B.TextColor3 = Color3.new(1, 1, 1)
+F9B.Font = Enum.Font.Code
+F9B.Text = "Console"
+F9B.Visible = true
+
+F9BUI = Instance.new("UICorner")
+F9BUI.Parent = F9B
+F9BUI.CornerRadius = UDim.new(0.2, 0)
+
+local function F9Pressing()
+    if _G.Pressing then
+        _G.Pressing("f9")
+    else
+        warn("Not Loaded _G.Pressing Successfully")
+    end
+end
+
+F9B.MouseButton1Click:Connect(F9Pressing)
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/Tensura/refs/heads/ciel/Keypressing_X"))()

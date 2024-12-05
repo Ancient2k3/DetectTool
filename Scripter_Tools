@@ -172,7 +172,7 @@ button3.Text = "R-Events Spy"
 
 button3.MouseButton1Click:Connect(function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/RobloxScript_1/main/UISound"))()
-    loadstring(game:HttpGet("https://rawscripts.net/raw/a-literal-baseplate.-Remote-Spy-For-Mobile-18133"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/RobloxScript/refs/heads/item/Remote_Spy_For_Mobile"))()
 end)
 
 local button4 = Instance.new("TextButton")

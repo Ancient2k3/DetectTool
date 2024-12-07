@@ -1,5 +1,25 @@
 -- Prevent my sister children playing some randomly others game too much --
 -- A timer [C]
+
+-- Keep Script On [HaHa]
+local teleportexecute = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport)
+
+local TeleportCheck = false
+Players.LocalPlayer.OnTeleport:Connect(function(State)
+    if KeepScript and (not TeleportCheck) and teleportexecute then
+        TeleportCheck = true
+        teleportexecute("loadstring(game:HttpGet('https://raw.githubusercontent.com/NganHa2k3/Tensura/refs/heads/slime/WorldsVoice_B'))()")
+    end
+end)
+
+if teleportexecute then
+    wait(1)
+    print("<NganHa2k3 Script - KeepScript is On>")
+    KeepScript = true
+else
+    warn("Missing queue_on_teleport")
+end
+
 local SGui_Blocker = Instance.new("ScreenGui")
 SGui_Blocker.Parent = game.CoreGui
 

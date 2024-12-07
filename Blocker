@@ -120,6 +120,7 @@ local function PhiCo_DVA()
         end
 
         if counter <= 10 then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/RobloxScript_1/main/UISound"))()
             local CoreGui = game:GetService("StarterGui")
             CoreGui:SetCore("SendNotification", {
                 Title = "NOTIFICATION:",

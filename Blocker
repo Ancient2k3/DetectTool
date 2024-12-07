@@ -1,5 +1,3 @@
--- Prevent my sister children playing some randomly others game too much --
--- A timer [C]
 local SGui_Blocker = Instance.new("ScreenGui")
 SGui_Blocker.Parent = game.CoreGui
 
@@ -18,77 +16,33 @@ CountingDownF_Kick.Active = true
 CountingDownF_Kick.Draggable = true
 CountingDownF_Kick.Visible = true
 
-local corner1 = Instance.new("UICorner")
-corner1.CornerRadius = UDim.new(0.2, 0)
-corner1.Parent = CountingDownF_Kick
+local function createUIElement(parent, size, position, color, text, textColor, font, textSize, rounded)
+    local frame = Instance.new("TextLabel")
+    frame.Parent = parent
+    frame.BackgroundTransparency = 0
+    frame.BackgroundColor3 = color
+    frame.Size = size
+    frame.Position = position
+    frame.TextScaled = true
+    frame.TextColor3 = textColor
+    frame.Font = font
+    frame.Text = text
+    frame.Visible = true
+    if rounded then
+        local corner = Instance.new("UICorner")
+        corner.CornerRadius = UDim.new(0.2, 0)
+        corner.Parent = frame
+    end
+    local stroke = Instance.new("UIStroke")
+    stroke.Parent = frame
+    stroke.Thickness = 2
+    stroke.Color = textColor
+    return frame
+end
 
-local stroke1 = Instance.new("UIStroke")
-stroke1.Parent = CountingDownF_Kick
-stroke1.Thickness = 2
-stroke1.Color = Color3.fromRGB(255, 255, 255)
-
-local Holding_NumberC = Instance.new("TextLabel")
-Holding_NumberC.Parent = CountingDownF_Kick
-Holding_NumberC.BackgroundTransparency = 0
-Holding_NumberC.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-Holding_NumberC.Size = UDim2.new(0.4, 0, 0.8, 0)
-Holding_NumberC.Position = UDim2.new(0.03, 0, 0.1, 0)
-Holding_NumberC.TextScaled = true
-Holding_NumberC.TextColor3 = Color3.fromRGB(255, 255, 255)
-Holding_NumberC.Font = RandomFont
-Holding_NumberC.Text = "120"
-Holding_NumberC.Visible = true
-
-local corner2 = Instance.new("UICorner")
-corner2.CornerRadius = UDim.new(0.2, 0)
-corner2.Parent = Holding_NumberC
-
-local stroke2 = Instance.new("UIStroke")
-stroke2.Parent = Holding_NumberC
-stroke2.Thickness = 2
-stroke2.Color = Color3.fromRGB(0, 0, 255)
-
-local Holding_HiddenC = Instance.new("TextBox")
-Holding_HiddenC.Parent = CountingDownF_Kick
-Holding_HiddenC.BackgroundTransparency = 0
-Holding_HiddenC.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-Holding_HiddenC.Size = UDim2.new(0.25, 0, 0.8, 0)
-Holding_HiddenC.Position = UDim2.new(0.45, 0, 0.1, 0)
-Holding_HiddenC.TextScaled = true
-Holding_HiddenC.TextColor3 = Color3.fromRGB(0, 255, 0)
-Holding_HiddenC.Font = RandomFont
-Holding_HiddenC.Text = ""
-Holding_HiddenC.Visible = true
-
-local corner3 = Instance.new("UICorner")
-corner3.CornerRadius = UDim.new(0.2, 0)
-corner3.Parent = Holding_HiddenC
-
-local stroke3 = Instance.new("UIStroke")
-stroke3.Parent = Holding_HiddenC
-stroke3.Thickness = 2
-stroke3.Color = Color3.fromRGB(0, 255, 0)
-
-local Moving_PositionG = Instance.new("TextButton")
-Moving_PositionG.Parent = CountingDownF_Kick
-Moving_PositionG.BackgroundTransparency = 0
-Moving_PositionG.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-Moving_PositionG.Size = UDim2.new(0.25, 0, 0.8, 0)
-Moving_PositionG.Position = UDim2.new(0.72, 0, 0.1, 0)
-Moving_PositionG.TextScaled = true
-Moving_PositionG.TextColor3 = Color3.fromRGB(255, 0, 0)
-Moving_PositionG.Font = RandomFont
-Moving_PositionG.Text = "❌"
-Moving_PositionG.Visible = true
-
-local corner4 = Instance.new("UICorner")
-corner4.CornerRadius = UDim.new(0.2, 0)
-corner4.Parent = Moving_PositionG
-
-local stroke4 = Instance.new("UIStroke")
-stroke4.Parent = Moving_PositionG
-stroke4.Thickness = 2
-stroke4.Color = Color3.fromRGB(255, 0, 0)
+local Holding_NumberC = createUIElement(CountingDownF_Kick, UDim2.new(0.4, 0, 0.8, 0), UDim2.new(0.03, 0, 0.1, 0), Color3.fromRGB(0, 0, 0), "120", Color3.fromRGB(255, 255, 255), RandomFont, 18, true)
+local Holding_HiddenC = createUIElement(CountingDownF_Kick, UDim2.new(0.25, 0, 0.8, 0), UDim2.new(0.45, 0, 0.1, 0), Color3.fromRGB(0, 0, 0), "", Color3.fromRGB(0, 255, 0), RandomFont, 18, true)
+local Moving_PositionG = createUIElement(CountingDownF_Kick, UDim2.new(0.25, 0, 0.8, 0), UDim2.new(0.72, 0, 0.1, 0), Color3.fromRGB(0, 0, 0), "❌", Color3.fromRGB(255, 0, 0), RandomFont, 18, true)
 
 Moving_PositionG.MouseButton1Click:Connect(function()
     CountingDownF_Kick.Position = UDim2.new(0.78, 0, -0.1, 0)
@@ -119,12 +73,23 @@ local function PhiCo_DVA()
             tween:Play()
         end
 
-        if counter = 60 then
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/RobloxScript_1/refs/heads/UI/MemeSound"))()
+        if counter == 60 then
+            local success, err = pcall(function()
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/RobloxScript_1/refs/heads/UI/MemeSound"))()
+            end)
+            if not success then
+                warn("Error loading MemeSound:", err)
+            end
         end
 
         if counter <= 10 then
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/RobloxScript_1/main/NotifySound"))()
+            local success, err = pcall(function()
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/RobloxScript_1/main/NotifySound"))()
+            end)
+            if not success then
+                warn("Error loading NotifySound:", err)
+            end
+
             local CoreGui = game:GetService("StarterGui")
             CoreGui:SetCore("SendNotification", {
                 Title = "NOTIFICATION:",
@@ -172,8 +137,8 @@ while true do
 end
 
 local CoreGui = game:GetService("StarterGui")
-        CoreGui:SetCore("SendNotification", {
-            Title = "Welcome to NganHa2k3 Script",
-            Text = "A [PlayingTimer] Used to Prevent, My Sister Children Playing Too Much... !",
-            Duration = 2,
-        })
+CoreGui:SetCore("SendNotification", {
+    Title = "Welcome to NganHa2k3 Script",
+    Text = "A [PlayingTimer] Used to Prevent, My Sister Children Playing Too Much... !",
+    Duration = 2,
+})

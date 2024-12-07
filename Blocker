@@ -130,7 +130,8 @@ local function PhiCo_DVA()
         end
 
         if counter <= 0 then
-            NahImFine:Kick("You've Got Kicked By [PlayingTimer] Running Out !")
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/Hello/refs/heads/main/TPG"))()
+            _G.ToGAMES("11137575513")
         end
     end
 end

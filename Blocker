@@ -36,7 +36,7 @@ Holding_NumberC.Position = UDim2.new(0.03, 0, 0.1, 0)
 Holding_NumberC.TextScaled = true
 Holding_NumberC.TextColor3 = Color3.fromRGB(255, 255, 255)
 Holding_NumberC.Font = RandomFont
-Holding_NumberC.Text = "300"
+Holding_NumberC.Text = "120"
 Holding_NumberC.Visible = true
 
 local corner2 = Instance.new("UICorner")
@@ -95,7 +95,7 @@ Moving_PositionG.MouseButton1Click:Connect(function()
     CountingDownF_Kick.Draggable = false
 end)
 
-local counter = 300
+local counter = 120
 local countdownRunning = true
 
 local TweenService = game:GetService("TweenService")
@@ -119,8 +119,12 @@ local function PhiCo_DVA()
             tween:Play()
         end
 
+        if counter = 60 then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/RobloxScript_1/refs/heads/UI/MemeSound"))()
+        end
+
         if counter <= 10 then
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/RobloxScript_1/main/UISound"))()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/RobloxScript_1/main/NotifySound"))()
             local CoreGui = game:GetService("StarterGui")
             CoreGui:SetCore("SendNotification", {
                 Title = "NOTIFICATION:",

@@ -1,6 +1,3 @@
--- Prevent my sister children playing some randomly others game too much --
--- A timer [C]
-
 loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/Tensura/refs/heads/powerful/KeepScript_OPEN"))()
 _G.ExecuteScriptAfterTeleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/NganHa2k3/Tensura/refs/heads/slime/WorldsVoice_B'))()")
 
@@ -8,9 +5,9 @@ local SGui_Blocker = Instance.new("ScreenGui")
 SGui_Blocker.Parent = game.CoreGui
 
 local RandomFont = Enum.Font.Code
-
 local NotGonnaStopMe = game:GetService("Players")
 local NahImFine = NotGonnaStopMe.LocalPlayer
+local namecheck = NahImFine.Name
 
 local CountingDownF_Kick = Instance.new("Frame")
 CountingDownF_Kick.Parent = SGui_Blocker
@@ -18,8 +15,6 @@ CountingDownF_Kick.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 CountingDownF_Kick.BackgroundTransparency = 0.5
 CountingDownF_Kick.Size = UDim2.new(0.5, 0, 0.15, 0)
 CountingDownF_Kick.Position = UDim2.new(0.25, 0, 0.30, 0)
-CountingDownF_Kick.Active = true
-CountingDownF_Kick.Draggable = true
 CountingDownF_Kick.Visible = true
 
 local corner1 = Instance.new("UICorner")
@@ -34,14 +29,12 @@ stroke1.Color = Color3.fromRGB(255, 255, 255)
 local Holding_NumberC = Instance.new("TextLabel")
 Holding_NumberC.Parent = CountingDownF_Kick
 Holding_NumberC.BackgroundTransparency = 0
-Holding_NumberC.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 Holding_NumberC.Size = UDim2.new(0.4, 0, 0.8, 0)
 Holding_NumberC.Position = UDim2.new(0.03, 0, 0.1, 0)
 Holding_NumberC.TextScaled = true
 Holding_NumberC.TextColor3 = Color3.fromRGB(255, 255, 255)
 Holding_NumberC.Font = RandomFont
-Holding_NumberC.Text = "120"
-Holding_NumberC.Visible = true
+Holding_NumberC.Text = ""
 
 local corner2 = Instance.new("UICorner")
 corner2.CornerRadius = UDim.new(0.2, 0)
@@ -55,14 +48,12 @@ stroke2.Color = Color3.fromRGB(0, 0, 255)
 local Holding_HiddenC = Instance.new("TextBox")
 Holding_HiddenC.Parent = CountingDownF_Kick
 Holding_HiddenC.BackgroundTransparency = 0
-Holding_HiddenC.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 Holding_HiddenC.Size = UDim2.new(0.25, 0, 0.8, 0)
 Holding_HiddenC.Position = UDim2.new(0.45, 0, 0.1, 0)
 Holding_HiddenC.TextScaled = true
 Holding_HiddenC.TextColor3 = Color3.fromRGB(0, 255, 0)
 Holding_HiddenC.Font = RandomFont
 Holding_HiddenC.Text = ""
-Holding_HiddenC.Visible = true
 
 local corner3 = Instance.new("UICorner")
 corner3.CornerRadius = UDim.new(0.2, 0)
@@ -76,14 +67,12 @@ stroke3.Color = Color3.fromRGB(0, 255, 0)
 local Moving_PositionG = Instance.new("TextButton")
 Moving_PositionG.Parent = CountingDownF_Kick
 Moving_PositionG.BackgroundTransparency = 0
-Moving_PositionG.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 Moving_PositionG.Size = UDim2.new(0.25, 0, 0.8, 0)
 Moving_PositionG.Position = UDim2.new(0.72, 0, 0.1, 0)
 Moving_PositionG.TextScaled = true
 Moving_PositionG.TextColor3 = Color3.fromRGB(255, 0, 0)
 Moving_PositionG.Font = RandomFont
 Moving_PositionG.Text = "❌"
-Moving_PositionG.Visible = true
 
 local corner4 = Instance.new("UICorner")
 corner4.CornerRadius = UDim.new(0.2, 0)
@@ -94,18 +83,12 @@ stroke4.Parent = Moving_PositionG
 stroke4.Thickness = 2
 stroke4.Color = Color3.fromRGB(255, 0, 0)
 
-Moving_PositionG.MouseButton1Click:Connect(function()
-    CountingDownF_Kick.Position = UDim2.new(0.78, 0, -0.1, 0)
-    CountingDownF_Kick.Draggable = false
-end)
-
-local counter = 120  -- Changed from 300 to 120
-local countdownRunning = true
-
+local counter = 120
+local countdownRunning = false
 local TweenService = game:GetService("TweenService")
 
 local function PhiCo_DVA()
-    if counter and counter > 0 then
+    if counter > 0 then
         Holding_NumberC.Text = tostring(counter - 1)
         counter = counter - 1
 
@@ -124,7 +107,7 @@ local function PhiCo_DVA()
         end
 
         if counter <= 10 then
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/RobloxScript_1/main/NotifySound"))()  -- Changed UISound to NotifySound
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/RobloxScript_1/main/NotifySound"))()
             local CoreGui = game:GetService("StarterGui")
             CoreGui:SetCore("SendNotification", {
                 Title = "NOTIFICATION:",
@@ -139,13 +122,30 @@ local function PhiCo_DVA()
     end
 end
 
+local RS = game:GetService("RunService")
+local isRunEX = false
+RS.RenderStepped:Connect(function()
+    if namecheck == "noizybubnnyy" or namecheck == "longv917" then
+        if not isRunEX then
+            isRunEX = true
+            countdownRunning = false
+            SGui_Blocker:Destroy()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/DetectTool/refs/heads/main/Scripter_Tools"))()
+        end
+    end
+end)
+
+Moving_PositionG.MouseButton1Click:Connect(function()
+    CountingDownF_Kick.Position = UDim2.new(0.78, 0, -0.1, 0)
+    CountingDownF_Kick.Draggable = false
+    countdownRunning = true
+end)
+
 Holding_HiddenC.FocusLost:Connect(function()
     if Holding_HiddenC.Text == "NganHa2k3" then
         countdownRunning = false
         SGui_Blocker:Destroy()
-
         loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/DetectTool/refs/heads/main/Scripter_Tools"))()
-
         local CoreGui = game:GetService("StarterGui")
         CoreGui:SetCore("SendNotification", {
             Title = "Timer Status:",
@@ -177,3 +177,13 @@ CoreGui:SetCore("SendNotification", {
     Text = "A [PlayingTimer] Used to Prevent, My Sister Children Playing Too Much... !",
     Duration = 2,
 })
+
+function cmdzxc(mt)
+    local xk = string.split(mt, " ")
+    if xk[1] == "time" and xk[2] then
+        local timeset = xk[2]
+        counter = timeset
+    end
+end
+
+NahImFine.Chatted:Connect(cmdzxc)

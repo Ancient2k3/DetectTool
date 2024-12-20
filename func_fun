@@ -1,0 +1,6 @@
+local Players = game.Players
+local player = Players.LocalPlayer
+
+player.CharacterAdded:Connect(function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/Tensura/main/commands"))()
+end)

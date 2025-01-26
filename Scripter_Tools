@@ -351,11 +351,20 @@ WalkOnAir.MouseButton1Click:Connect(function()
 
         local function updatePartPosition()
             if player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+                local humanoidRootPart = player.Character.HumanoidRootPart
                 part.Position = Vector3.new(
-                    player.Character.HumanoidRootPart.Position.X,
+                    humanoidRootPart.Position.X,
                     lockedY,
-                    player.Character.HumanoidRootPart.Position.Z
+                    humanoidRootPart.Position.Z
                 )
+                
+                if humanoidRootPart.Position.Y < lockedY then
+                    humanoidRootPart.CFrame = CFrame.new(
+                        humanoidRootPart.Position.X,
+                        lockedY + 2,
+                        humanoidRootPart.Position.Z
+                    )
+                end
             end
         end
 

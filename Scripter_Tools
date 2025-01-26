@@ -417,6 +417,7 @@ function SpawnPart_WayPoint()
         SavedWayPoint.Name = "GateWay"
         SavedWayPoint.Parent = game.Workspace
         SavedWayPoint.Transparency = 1
+        SavedWayPoint.CanCollide = false
         SavedWayPoint.Position = Vector3.new(
             plr.Character.HumanoidRootPart.Position.X,
             plr.Character.HumanoidRootPart.Position.Y,
@@ -484,10 +485,11 @@ local CoreGui = game:GetService("StarterGui")
 })
 
 -- CharacterAdded function --
-local TPWayPoint_After_ReSpawning = game:GetService("Workspace"):FindFirstChild("GateWay")
+
 local plr = game:GetService("Players").LocalPlayer
 
 plr.CharacterAdded:Connect(function()
+    local TPWayPoint_After_ReSpawning = game:GetService("Workspace"):FindFirstChild("GateWay")
     if TPWayPoint_After_ReSpawning then
         print("Preparing to teleport to Way Point!")
         wait(1)

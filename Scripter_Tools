@@ -389,6 +389,88 @@ WalkOnAir.MouseButton1Click:Connect(function()
     end
 end)
 
+local WayPoint = Instance.new("TextButton")
+WayPoint.Parent = ScreenGui
+WayPoint.BackgroundColor3 = Color3.new(0, 0, 0)
+WayPoint.BackgroundTransparency = 0.5
+WayPoint.Position = UDim2.new(0.3, 0, 0.6, 0)
+WayPoint.Size = UDim2.new(0.05, 0, 0.1, 0)
+WayPoint.TextColor3 = Color3.new(1, 1, 1)
+WayPoint.TextScaled = true
+WayPoint.Font = Enum.Font.Code
+WayPoint.Text = "□"
+WayPoint.Visible = false
+
+local UIC_2 = Instance.new("UICorner")
+UIC_2.Parent = WayPoint
+UIC_2.CornerRadius = UDim.new(0.1, 0)
+
+local AlreadyWayPoint = false
+local SavedWayPoint
+function SpawnPart_WayPoint()
+    if AlreadyWayPoint then
+        local plr = game:GetService("Players").LocalPlayer
+        
+        SavedWayPoint = Instance.new("Part")
+        SavedWayPoint.Size = Vector3.new(0.5, 0.5, 0.5)
+        SavedWayPoint.Anchored = true
+        SavedWayPoint.Name = "GateWay"
+        SavedWayPoint.Parent = game.Workspace
+        SavedWayPoint.Transparency = 1
+        SavedWayPoint.Position = Vector3.new(
+            plr.Character.HumanoidRootPart.Position.X,
+            plr.Character.HumanoidRootPart.Position.Y,
+            plr.Character.HumanoidRootPart.Position.Z
+        )
+    else
+        local plr = game:GetService("Players").LocalPlayer
+        
+        plr.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").GateWay.CFrame
+        wait()
+        SavedWayPoint:Destroy()
+        SavedWayPoint = nil
+    end
+end
+
+WayPoint.MouseButton1Click:Connect(function()
+    if AlreadyWayPoint then
+        AlreadyWayPoint = false
+        SpawnPart_WayPoint()
+        WayPoint.Text = "□"
+    else
+        AlreadyWayPoint = true
+        SpawnPart_WayPoint()
+        WayPoint.Text = "■"
+    end
+end)
+
+local EnableWayPoint = Instance.new("TextButton")
+EnableWayPoint.Parent = ToolsBox
+EnableWayPoint.BackgroundColor3 = Color3.new(0, 0, 0)
+EnableWayPoint.BackgroundTransparency = 0.5
+EnableWayPoint.Position = UDim2.new(0.405, 0, 0, 0)
+EnableWayPoint.Size = UDim2.new(0.03, 0, 0.9, 0)
+EnableWayPoint.TextScaled = true
+EnableWayPoint.TextColor3 = Color3.new(1, 1, 1)
+EnableWayPoint.Font = Enum.Font.Code
+EnableWayPoint.Text = "Way Point: No"
+EnableWayPoint.Visible = true
+
+local IsActivated_X1 = false
+EnableWayPoint.MouseButton1Click:Connect(function()
+    if IsActivated_X1 then
+        IsActivated_X1 = false
+        EnableWayPoint.Text = "Way Point: No"
+        EnableWayPoint.TextColor3 = Color3.new(1, 1, 1)
+        WayPoint.Visible = false
+    else
+        IsActivated_X1 = true
+        EnableWayPoint.Text = "Way Point: Yes"
+        EnableWayPoint.TextColor3 = Color3.new(0, 1, 0)
+        WayPoint.Visible = true
+    end
+end)
+
 -- N msg --
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/RobloxScript_1/main/NotifySound"))()

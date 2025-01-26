@@ -483,6 +483,23 @@ local CoreGui = game:GetService("StarterGui")
         Duration = 2,
 })
 
+-- CharacterAdded function --
+local TPWayPoint_After_ReSpawning = game:GetService("Workspace"):FindFirstChild("GateWay")
+local plr = game:GetService("Players").LocalPlayer
+
+plr.CharacterAdded:Connect(function()
+    if TPWayPoint_After_ReSpawning then
+        print("Preparing to teleport to Way Point!")
+        wait(1)
+        plr.Character.HumanoidRootPart.CFrame = TPWayPoint_After_ReSpawning.CFrame
+        task.wait()
+        WayPoint.Text = "□"
+        SavedWayPoint:Destroy()
+    else
+        print("Nothing...")
+    end
+end)
+
 -- Chatted --
 
 local players = game.Players.LocalPlayer

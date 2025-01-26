@@ -426,7 +426,7 @@ function SpawnPart_WayPoint()
         local plr = game:GetService("Players").LocalPlayer
         
         plr.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").GateWay.CFrame
-        wait()
+        wait(0.05)
         SavedWayPoint:Destroy()
         SavedWayPoint = nil
     end

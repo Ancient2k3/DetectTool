@@ -72,6 +72,16 @@ local function DisplayChat_Message(str_chat)
     end
 end
 
+function toClipboard(txt)
+    local everyClipboard = setclipboard or toclipboard or set_clipboard or (Clipboard and Clipboard.set)
+    if everyClipboard then
+        everyClipboard(tostring(txt))
+        print("Clipboard message")
+    else
+        print("Nothing to do Clipboard")
+    end
+end
+
 -- Close of Function Box --
 
 PlusButton.Parent = ScreenGui

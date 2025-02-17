@@ -489,8 +489,8 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/RobloxScrip
 local CoreGui = game:GetService("StarterGui")
 
     CoreGui:SetCore("SendNotification", {
-        Title = "Welcome to NganHa2k3 Script",
-        Text = " This is a bunch of useful tools !",
+        Title = "Welcome to HoangHien Script",
+        Text = " This is a bunch of useful tools, for scripting !",
         Duration = 2,
 })
 
@@ -516,7 +516,7 @@ end)
 
 local players = game.Players.LocalPlayer
 
-DisplayChat_Message("۝ " .. players.Name .. ": ,Hello I will Script !")
+DisplayChat_Message("۝ " .. players.DisplayName .. ": I'mma do scripting... !")
 
 -- Keep Game Script --
 loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/Tensura/refs/heads/powerful/KeepScript_OPEN"))()

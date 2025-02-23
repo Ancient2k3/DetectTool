@@ -530,7 +530,7 @@ UIC_3.CornerRadius = UDim.new(0.1, 0)
 
 local AlreadyNoclip = false
 function ThroughObject_Aka_Noclip(boolean)
-    for _, n in pairs(Ark_Plr.Character:GetDescendants()) do
+    for _, n in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
         if n:IsA("BasePart") then
             if boolean then
                 n.CanCollide = false

@@ -512,6 +512,74 @@ plr.CharacterAdded:Connect(function()
     end
 end)
 
+local Noclip = Instance.new("TextButton")
+Noclip.Parent = ScreenGui
+Noclip.BackgroundColor3 = Color3.new(0, 0, 0)
+Noclip.BackgroundTransparency = 0.5
+Noclip.Position = UDim2.new(0.38, 0, 0.6, 0)
+Noclip.Size = UDim2.new(0.05, 0, 0.1, 0)
+Noclip.TextColor3 = Color3.new(1, 1, 1)
+Noclip.TextScaled = true
+Noclip.Font = Enum.Font.Code
+Noclip.Text = "Noclip"
+Noclip.Visible = false
+
+local UIC_3 = Instance.new("UICorner")
+UIC_3.Parent = Noclip
+UIC_3.CornerRadius = UDim.new(0.1, 0)
+
+local AlreadyNoclip = false
+function ThroughObject_Aka_Noclip(boolean)
+    for _, n in pairs(Ark_Plr.Character:GetDescendants()) do
+        if n:IsA("BasePart") then
+            if boolean then
+                n.CanCollide = false
+            else
+                n.CanCollide = true
+            end
+        end
+    end
+end
+
+Noclip.MouseButton1Click:Connect(function()
+    if AlreadyNoclip then
+        AlreadyNoclip = false
+        ThroughObject_Aka_Noclip(AlreadyNoclip)
+        Noclip.Text = "Noclip"
+    else
+        AlreadyNoclip = true
+        ThroughObject_Aka_Noclip(AlreadyNoclip)
+        Noclip.Text = "Clip"
+    end
+end)
+
+local EnableNoclip = Instance.new("TextButton")
+EnableNoclip.Parent = ToolsBox
+EnableNoclip.BackgroundColor3 = Color3.new(0, 0, 0)
+EnableNoclip.BackgroundTransparency = 0.5
+EnableNoclip.Position = UDim2.new(0.445, 0, 0, 0)
+EnableNoclip.Size = UDim2.new(0.03, 0, 0.9, 0)
+EnableNoclip.TextScaled = true
+EnableNoclip.TextColor3 = Color3.new(1, 1, 1)
+EnableNoclip.Font = Enum.Font.Code
+EnableNoclip.Text = "Noclip: No"
+EnableNoclip.Visible = true
+
+local IsActivated_X1 = false
+EnableNoclip.MouseButton1Click:Connect(function()
+    if IsActivated_X1 then
+        IsActivated_X1 = false
+        EnableNoclip.Text = "Noclip: No"
+        EnableNoclip.TextColor3 = Color3.new(1, 1, 1)
+        Noclip.Visible = false
+    else
+        IsActivated_X1 = true
+        EnableNoclip.Text = "Noclip: Yes"
+        EnableNoclip.TextColor3 = Color3.new(0, 1, 0)
+        Noclip.Visible = true
+    end
+end)
+
 -- Chatted --
 
 local players = game.Players.LocalPlayer

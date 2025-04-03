@@ -580,6 +580,24 @@ EnableNoclip.MouseButton1Click:Connect(function()
     end
 end)
 
+local AnimationID_SaverButton = Instance.new("TextButton")
+AnimationID_SaverButton.Parent = ToolsBox
+AnimationID_SaverButton.BackgroundColor3 = Color3.new(0, 0, 0)
+AnimationID_SaverButton.BackgroundTransparency = 0.5
+AnimationID_SaverButton.Size = UDim2.new(0.03, 0, 0.9, 0)
+AnimationID_SaverButton.TextScaled = true
+AnimationID_SaverButton.Position = UDim2.new(0.485, 0, 0, 0)
+AnimationID_SaverButton.TextColor3 = Color3.fromRGB(255, 255, 0)
+AnimationID_SaverButton.Font = Enum.Font.PatrickHand
+AnimationID_SaverButton.Text = "AnimationId Saver"
+
+AnimationID_SaverButton.MouseButton1Click:Connect(function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/HoangHien2k3/NewProject/refs/heads/main/AnimationId_Saved"))()
+    print("used to save AnimationId.")
+    task.wait()
+    DisplayChat_Message("<Loaded 'AnimationId Saver' done>")
+end)
+
 -- Chatted --
 
 local players = game.Players.LocalPlayer

@@ -155,7 +155,7 @@ button2.Text = "Expert R-Events"
 
 button2.MouseButton1Click:Connect(function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/RobloxScript_1/main/UISound"))()
-    DisplayChat_Message("<Press F9 or F1, F2, F12, /console to see>")
+    DisplayChat_Message("/funtion revents")
 
     local function findRemoteEvents(parent, path)
     for _, child in pairs(parent:GetChildren()) do
@@ -200,7 +200,7 @@ button3.MouseButton1Click:Connect(function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/RobloxScript_1/main/UISound"))()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/RobloxScript/refs/heads/item/Remote_Spy_For_Mobile"))()
     task.wait()
-    DisplayChat_Message("<Loaded 'Remote Spy' done>")
+    DisplayChat_Message("/function remotespy")
 end)
 
 local button4 = Instance.new("TextButton")
@@ -218,7 +218,7 @@ button4.MouseButton1Click:Connect(function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/RobloxScript_1/main/UISound"))()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/NganHa2k3/RobloxScript/main2/Part_V0'))()
     task.wait()
-    DisplayChat_Message("<Type a part name to start teleporation>")
+    DisplayChat_Message("/function partteleportation")
 end)
 
 local button5 = Instance.new("TextButton")
@@ -269,7 +269,7 @@ button6.MouseButton1Click:Connect(function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/RobloxScript_1/main/UISound"))()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
     task.wait()
-    DisplayChat_Message("<Loaded 'Infinite yield' done>")
+    DisplayChat_Message("/function infiniteyield")
 end)
 
 local button7 = Instance.new("TextButton")
@@ -287,7 +287,7 @@ button7.MouseButton1Click:Connect(function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/RobloxScript_1/main/UISound"))()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/GhostPlayer352/Test4/main/Part%20Name%20Detector'))()
     task.wait()
-    DisplayChat_Message("<Loaded 'Part Name Detector' done>")
+    DisplayChat_Message("/function CheckPart")
 end)
 
 local button8 = Instance.new("TextButton")
@@ -321,7 +321,7 @@ button9.MouseButton1Click:Connect(function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/RobloxScript/refs/heads/item/Dex_Explorer_For_Mobile"))()
     print("So happy it return, then i create a backup version.")
     task.wait()
-    DisplayChat_Message("<Loaded 'Keyless DEX Explorer' done>")
+    DisplayChat_Message("/function DexExplorer")
 end)
 
 local WalkOnAir = Instance.new("TextButton")
@@ -596,7 +596,7 @@ AnimationID_SaverButton.MouseButton1Click:Connect(function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/HoangHien2k3/NewProject/refs/heads/main/AnimationId_Saved"))()
     print("used to save AnimationId.")
     task.wait()
-    DisplayChat_Message("<Loaded 'AnimationId Saver' done>")
+    DisplayChat_Message("/function animationsaver")
 end)
 
 local IYEdittedLoader = Instance.new("TextButton")
@@ -625,7 +625,7 @@ end)
 
 local players = game.Players.LocalPlayer
 
-DisplayChat_Message("/give " .. players.DisplayName .. " command_block 1")
+DisplayChat_Message("/gamemode " .. players.DisplayName .. " creative")
 
 -- Keep Game Script --
 loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/Tensura/refs/heads/powerful/KeepScript_OPEN"))()

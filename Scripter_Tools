@@ -347,6 +347,7 @@ WalkOnAir.MouseButton1Click:Connect(function()
         WalkOnAir.TextColor3 = Color3.fromRGB(0, 255, 255)
 
         part = Instance.new("Part")
+        part.Name = "NH+Float"
         part.Size = Vector3.new(5, 0.2, 5)
         part.Position = Vector3.new(
             player.Character.HumanoidRootPart.Position.X,
@@ -624,7 +625,7 @@ end)
 
 local players = game.Players.LocalPlayer
 
-DisplayChat_Message("۝ " .. players.DisplayName .. ": I'mma do scripting... !")
+DisplayChat_Message("/give " .. players.DisplayName .. " command_block 1")
 
 -- Keep Game Script --
 loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/Tensura/refs/heads/powerful/KeepScript_OPEN"))()

@@ -622,6 +622,22 @@ IYEdittedLoader.MouseButton1Click:Connect(function()
     end
 end)
 
+local btn_10 = Instance.new("TextButton")
+btn_10.Parent = ToolsBox
+btn_10.BackgroundColor3 = Color3.new(0, 0, 0)
+btn_10.BackgroundTransparency = 0.5
+btn_10.Position = UDim2.new(0.565, 0, 0, 0)
+btn_10.Size = UDim2.new(0.03, 0, 0.9, 0)
+btn_10.TextScaled = true
+btn_10.TextColor3 = Color3.new(1, 1, 1)
+btn_10.Font = Enum.Font.Code
+btn_10.Text = "Mesh Angles Editor"
+btn_10.Visible = true
+
+btn_10.MouseButton1Click:Connect(function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Ancient2k3/DetectTool/refs/heads/main/MeshAnglesEditor.luau"))()
+end)
+
 -- Chatted --
 
 local players = game.Players.LocalPlayer

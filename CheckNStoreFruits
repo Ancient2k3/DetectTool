@@ -1,8 +1,3 @@
-local var = {
-    is_stored = false,
-    is_alrhas = false
-}
-
 local atb, in_backpack, hiddenname = "OriginalName"
 for i, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
     if v:IsA("Tool") and v.Name:match("Fruit") and v:GetAttribute(atb) then
@@ -16,22 +11,12 @@ for i, v in pairs(CommF_:InvokeServer("getInventory")) do
     if _Type(v) == "table" then
         if v.Type == "Blox Fruit" then
             if v.Name == in_backpack then
-                if not var.is_alrhas then var.is_alrhas = true
-                    game:GetService("StarterGui"):SetCore("SendNotification", {
-                        Title = "Fruit Checker",
-                        Text = "You're already has this fruit.",
-                        Duration = 2.5,
-                    }) var.is_alrhas = false
-                end
+                print("[Đã có trái " .. in_backpack .. " rồi nên sẽ bỏ qua!]")
+                --game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Fruit Checker", Text = "You're already has this fruit.", Duration = 2.5,})
             else
-                if not var.is_stored then var.is_stored = true
-                    CommF_:InvokeServer("StoreFruit", hiddenname, game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(in_backpack))
-                    game:GetService("StarterGui"):SetCore("SendNotification", {
-                        Title = "Fruit Checker",
-                        Text = "Stored " .. in_backpack .. " on hand!",
-                        Duration = 2.5,
-                    }) var.is_stored = false
-                end
+                CommF_:InvokeServer("StoreFruit", hiddenname, game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(in_backpack))
+                print("[Đã lưu trữ trái " .. in_backpack .. " ]")
+                --game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Fruit Checker", Text = "Stored " .. in_backpack .. " on hand!", Duration = 2.5,})
             end
         end
     end

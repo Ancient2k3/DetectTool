@@ -8,6 +8,6 @@ return {
   "오, 당신은 강력한 상대처럼 보이네요. 하지만 당신 [user] 은 아직 어리고, 경험도 부족하고, 너무 소심해서 저를 이길 수 없어요!",
   "o, dangsin-eun ganglyeoghan sangdaecheoleom boineyo. hajiman dangsin [user] eun ajig eoligo, gyeongheomdo bujoghago, neomu sosimhaeseo jeoleul igil su eobs-eoyo!",
   "ERROR... [owner]!",
-  "i [user] leul beon-yeoghaneun de sigan-eul nangbihaji maseyo =))"
+  "i [user] leul beon-yeoghaneun de sigan-eul nangbihaji maseyo =))",
   context = {"%[owner%]", "%[user%]"}
 }

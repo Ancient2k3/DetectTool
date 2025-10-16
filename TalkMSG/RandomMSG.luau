@@ -1,13 +1,13 @@
--- smth --
+-- Auto Welcome Message Fun_Randomizer --
 local plrs
 plrs = game:GetService("Players")
 
 local plr
 plr = plrs.LocalPlayer
 
-local talk_message = {
+local talk_message = loadstring(game:HttpGet("https://raw.githubusercontent.com/Ancient2k3/DetectTool/refs/heads/main/TalkMSG/MSG_STORAGE.luau"))() or {
     "Hello [owner]!",
-    "Yooo, Hi [user]!",
+    "Yooo, Hi friend of mine [user]!",
     context = {
         "%[owner%]",
         "%[user%]"

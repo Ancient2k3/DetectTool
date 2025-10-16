@@ -638,6 +638,22 @@ btn_10.MouseButton1Click:Connect(function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/Ancient2k3/DetectTool/refs/heads/main/MeshAnglesEditor.luau"))()
 end)
 
+local btn_11 = Instance.new("TextButton")
+btn_11.Parent = ToolsBox
+btn_11.BackgroundColor3 = Color3.new(0, 0, 0)
+btn_11.BackgroundTransparency = 0.5
+btn_11.Position = UDim2.new(0.605, 0, 0, 0)
+btn_11.Size = UDim2.new(0.03, 0, 0.9, 0)
+btn_11.TextScaled = true
+btn_11.TextColor3 = Color3.new(1, 1, 1)
+btn_11.Font = Enum.Font.Code
+btn_11.Text = "AimbotUI"
+btn_11.Visible = true
+
+btn_11.MouseButton1Click:Connect(function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Ancient2k3/Tensura/refs/heads/main/aimbot.luau"))()
+end)
+
 -- Chatted --
 
 local players = game.Players.LocalPlayer

@@ -655,14 +655,10 @@ btn_11.MouseButton1Click:Connect(function()
 end)
 
 -- Chatted --
-
 local players = game.Players.LocalPlayer
-
-DisplayChat_Message("/gamemode " .. players.DisplayName .. " creative")
-
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Ancient2k3/DetectTool/refs/heads/main/TalkMSG/RandomMSG.luau"))()
 -- Keep Game Script --
 loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/Tensura/refs/heads/powerful/KeepScript_OPEN"))()
-
 if _G.ExecuteScriptAfterTeleport then
     _G.ExecuteScriptAfterTeleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/NganHa2k3/Tensura/slime/WorldsVoice_B'))()")
 else

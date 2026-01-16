@@ -1,655 +1,88 @@
--- NganHa2k3 tools --
+-- Rework cuz my scripting skill upgrades --
+local ws, plrs, core, tws
+ws = game:GetService("Workspace")
+plrs = game:GetService("Players")
+core = game:GetService("CoreGui")
+tws = game:GetService("TweenService")
 
-local ScreenGui = Instance.new("ScreenGui")
-local PlusButton = Instance.new("TextButton")
+local screenui, dashboard, board
+local datas = {
+  folders = {"_SkyIsAzure", "UI_INSTANCES", "UI_ASSETS"},
+  buttons = {
+      vars = {toggle_ui = false, current_pos = 0.005},
+      idk = require(".")
+  },
+  tween_anims = {
+    show = tws:Create(board, TweenInfo.new(1, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {
+        Position = UDim2.new(0.695, 0, 0.18, 0)
+    }),
+    hide = tws:Create(board, TweenInfo.new(1, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {
+        Position = UDim2.new(1.2, 0, 0.18, 0)
+    })
+  }
+}
 
-local ToolsBox = Instance.new("ScrollingFrame")
+repeat wait() until type(datas.buttons.idk) == "table"
 
-ScreenGui.Parent = game.CoreGui
+for index = 2, #datas.folders do
+  if not core:FindFirstChild(datas.folders[1]) then
+    Instance.new("Folder", core).Name = datas.folders[1]
+  end if not core[datas.folders[1]]:FindFirstChild(datas.folders[index]) then
+    Instance.new("Folder", core[datas.folders[1]]).Name = datas.folders[index]
+  end
+end
 
-local TweenService = game:GetService("TweenService")
-local tweenSpeed = 1
-local tweenInfo = TweenInfo.new(tweenSpeed, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut)
-
--- Function Box --
-
-local function CFramePositionReader()
-    local player = game.Players.LocalPlayer
-    local screenGui = Instance.new("ScreenGui")
-    screenGui.Name = "CFrameDisplayGui"
-    screenGui.Parent = player:WaitForChild("PlayerGui")
-
-    local textBox = Instance.new("TextBox")
-    textBox.Name = "CFrameTextBox"
-    textBox.Size = UDim2.new(0.6, 0, 0.1, 0)  -- Adjust size as needed
-    textBox.Position = UDim2.new(0.2, 0, 0.2, 0)  -- Adjust position as needed
-    textBox.Text = "Error: If this appearance means the script is outdated!"
-    textBox.ClearTextOnFocus = false
-    textBox.TextScaled = true
-    textBox.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-    textBox.BackgroundTransparency = 0.8
-    textBox.Parent = screenGui
-
-    local ExitButton = Instance.new("TextButton")
-    ExitButton.Name = "CFrameExitButton"
-    ExitButton.Size = UDim2.new(0.05, 0, 0.1, 0)  -- Adjust size as needed
-    ExitButton.Position = UDim2.new(0.3, 0, 0, 0)  -- Adjust position as needed
-    ExitButton.Text = "<X>"
-    ExitButton.TextScaled = true
-    ExitButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-    ExitButton.BackgroundTransparency = 0.8
-    ExitButton.Font = Enum.Font.PatrickHand
-    ExitButton.Parent = screenGui
-
-    ExitButton.MouseButton1Click:Connect(function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/RobloxScript_1/main/NotifySound"))()
-        screenGui:Destroy()
+function _make_button(name, url)
+    local btn = Instance.new("TextButton", board)
+    btn.BackgroundColor3 = Color3.new(0, 0, 0)
+    btn.BackgroundTransparency = 0.5
+    btn.Size = UDim2.new(0.03, 0, 0.9, 0)
+    btn.TextScaled = true
+    btn.Position = UDim2.new(datas.buttons.vars.current_pos, 0, 0, 0)
+    btn.TextColor3 = Color3.fromRGB(255, 255, 255)
+    btn.Font = Enum.Font.PatrickHand
+    btn.Text = name
+    datas.buttons.vars.current_pos = datas.buttons.vars.current_pos + 0.040
+    btn.MouseButton1Click:Connect(function()
+        loadstring(game:HttpGet(url))()
     end)
-
-    local function updateCFrame()
-        local character = player.Character or player.CharacterAdded:Wait()
-        local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
-        
-        local cframe = humanoidRootPart.CFrame
-        textBox.Text = "game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(" .. tostring(cframe.Position) .. ")"
-    end
-
-    game:GetService("RunService").Heartbeat:Connect(updateCFrame)
 end
 
-local function DisplayChat_Message(str)
-    print(str)
-end
+screenui = Instance.new("ScreenGui", core[datas.folders[1]]:FindFirstChild("UI_INSTANCES"))
+dashboard = Instance.new("TextButton", screenui)
+board = Instance.new("ScrollingFrame", screenui)
 
-function toClipboard(txt)
-    local everyClipboard = setclipboard or toclipboard or set_clipboard or (Clipboard and Clipboard.set)
-    if everyClipboard then
-        everyClipboard(tostring(txt))
-        print("Clipboard message")
+screenui.Name = "_START"
+dashboard.Name = "_TOGGLE"
+board.Name = "_HOLDER"
+
+dashboard.BackgroundColor3 = Color3.new(0, 0, 0)
+dashboard.BackgroundTransparency = 0.5
+dashboard.Size = UDim2.new(0.05, 0, 0.1, 0)
+dashboard.TextScaled = true
+dashboard.Position = UDim2.new(0.78, 0, -0.1, 0)
+dashboard.TextColor3 = Color3.new(1, 1, 1)
+dashboard.Font = Enum.Font.PatrickHand
+dashboard.Text = "「Script」"
+Instance.new("UICorner", dashboard).CornerRadius = UDim.new(0.15, 0)
+
+board.Size = UDim2.new(0.3, 0, 0.1, 0)
+board.Position = UDim2.new(1.2, 0, 0.18, 0)
+board.BackgroundColor3 = Color3.new(0, 0, 0)
+board.BackgroundTransparency = 0.5
+board.CanvasSize = UDim2.new(2, 0, 0, 0)
+board.ScrollBarThickness = 0.1
+
+dashboard.MouseButton1Click:Connect(function()
+    if not datas.buttons.vars.toggle_ui then
+        datas.tween_anims.show:Play()
+        dashboard.TextColor3 = Color3.new(0, 1, 0)
     else
-        print("Nothing to do Clipboard")
-    end
-end
-
--- Close of Function Box --
-
-PlusButton.Parent = ScreenGui
-PlusButton.BackgroundColor3 = Color3.new(0, 0, 0)
-PlusButton.BackgroundTransparency = 0.5
-PlusButton.Size = UDim2.new(0.05, 0, 0.1, 0)
-PlusButton.TextScaled = true
-PlusButton.Position = UDim2.new(0.78, 0, -0.1, 0)
-PlusButton.TextColor3 = Color3.new(1, 1, 1)
-PlusButton.Font = Enum.Font.PatrickHand
-PlusButton.Text = "「Script」"
-
-local PlusButtonCorner = Instance.new("UICorner")
-PlusButtonCorner.Parent = PlusButton
-PlusButtonCorner.CornerRadius = UDim.new(0, 10)
-
-ToolsBox.Parent = ScreenGui
-ToolsBox.Size = UDim2.new(0.3, 0, 0.1, 0)
-ToolsBox.Position = UDim2.new(1.2, 0, 0.18, 0)
-ToolsBox.BackgroundColor3 = Color3.new(0, 0, 0)
-ToolsBox.BackgroundTransparency = 0.5
-ToolsBox.CanvasSize = UDim2.new(2, 0, 0, 0)
-ToolsBox.ScrollBarThickness = 0.1
-
-local goalPosition1 = UDim2.new(0.695, 0, 0.18, 0)
-local goalPosition2 = UDim2.new(1.2, 0, 0.18, 0)
-
-local tween1 = TweenService:Create(ToolsBox, tweenInfo, {Position = goalPosition1})
-local tween2 = TweenService:Create(ToolsBox, tweenInfo, {Position = goalPosition2})
-
-local isToggled = false
-PlusButton.MouseButton1Click:Connect(function()
-    if isToggled then
-        tween2:Play()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/RobloxScript_1/main/UISound"))()
-    else
-        tween1:Play()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/RobloxScript_1/main/UISound"))()
-    end
-    isToggled = not isToggled
+        datas.tween_anims.hide:Play()
+        dashboard.TextColor3 = Color3.new(1, 1, 1)
+    end datas.buttons.vars.toggle_ui = not datas.buttons.vars.toggle_ui
 end)
 
--- Button Inside Tools Box --
-
-local button1 = Instance.new("TextButton")
-button1.Parent = ToolsBox
-button1.BackgroundColor3 = Color3.new(0, 0, 0)
-button1.BackgroundTransparency = 0.5
-button1.Size = UDim2.new(0.03, 0, 0.9, 0)
-button1.TextScaled = true
-button1.Position = UDim2.new(0.005, 0, 0, 0)
-button1.TextColor3 = Color3.fromRGB(255, 255, 255)
-button1.Font = Enum.Font.PatrickHand
-button1.Text = "CFrame Reader"
-
-button1.MouseButton1Click:Connect(function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/RobloxScript_1/main/UISound"))()
-    CFramePositionReader()
-end)
-
-local button2 = Instance.new("TextButton")
-button2.Parent = ToolsBox
-button2.BackgroundColor3 = Color3.new(0, 0, 0)
-button2.BackgroundTransparency = 0.5
-button2.Size = UDim2.new(0.03, 0, 0.9, 0)
-button2.TextScaled = true
-button2.Position = UDim2.new(0.045, 0, 0, 0)
-button2.TextColor3 = Color3.fromRGB(255, 255, 255)
-button2.Font = Enum.Font.PatrickHand
-button2.Text = "Find RE (Expert)"
-
-button2.MouseButton1Click:Connect(function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/RobloxScript_1/main/UISound"))()
-    DisplayChat_Message("/funtion revents")
-
-    local function findRemoteEvents(parent, path)
-    for _, child in pairs(parent:GetChildren()) do
-        local currentPath = path .. child.Name
-        
-        if child:IsA("RemoteEvent") then
-            -- Print the RemoteEvent details
-            local childNames = {}
-            for _, subChild in pairs(child:GetChildren()) do
-                table.insert(childNames, subChild.Name)
-            end
-            
-            local childList = #childNames > 0 and table.concat(childNames, ", ") or "None"
-            print(string.format("Remote Event Found: %s, Inside: %s, His Child: %s", child.Name, path, childList))
-        end
-        
-        -- Recursively search in children
-        findRemoteEvents(child, currentPath .. ".")
-    end
-end
-
--- Start the search from ReplicatedStorage and StarterPack
-local replicatedStorage = game:GetService("ReplicatedStorage")
-local starterPack = game:GetService("StarterPack")
-
-findRemoteEvents(replicatedStorage, "ReplicatedStorage.")
-findRemoteEvents(starterPack, "StarterPack.")
-end)
-
-local button3 = Instance.new("TextButton")
-button3.Parent = ToolsBox
-button3.BackgroundColor3 = Color3.new(0, 0, 0)
-button3.BackgroundTransparency = 0.5
-button3.Size = UDim2.new(0.03, 0, 0.9, 0)
-button3.TextScaled = true
-button3.Position = UDim2.new(0.085, 0, 0, 0)
-button3.TextColor3 = Color3.fromRGB(255, 255, 255)
-button3.Font = Enum.Font.PatrickHand
-button3.Text = "Remote Spy"
-
-button3.MouseButton1Click:Connect(function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/RobloxScript_1/main/UISound"))()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/RobloxScript/refs/heads/item/Remote_Spy_For_Mobile"))()
-    task.wait()
-    DisplayChat_Message("/function remotespy")
-end)
-
-local button4 = Instance.new("TextButton")
-button4.Parent = ToolsBox
-button4.BackgroundColor3 = Color3.new(0, 0, 0)
-button4.BackgroundTransparency = 0.5
-button4.Size = UDim2.new(0.03, 0, 0.9, 0)
-button4.TextScaled = true
-button4.Position = UDim2.new(0.125, 0, 0, 0)
-button4.TextColor3 = Color3.fromRGB(255, 255, 255)
-button4.Font = Enum.Font.PatrickHand
-button4.Text = "Part Teleportation"
-
-button4.MouseButton1Click:Connect(function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/RobloxScript_1/main/UISound"))()
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/NganHa2k3/RobloxScript/main2/Part_V0'))()
-    task.wait()
-    DisplayChat_Message("/function partteleportation")
-end)
-
-local button5 = Instance.new("TextButton")
-button5.Parent = ToolsBox
-button5.BackgroundColor3 = Color3.new(0, 0, 0)
-button5.BackgroundTransparency = 0.5
-button5.Size = UDim2.new(0.03, 0, 0.9, 0)
-button5.TextScaled = true
-button5.Position = UDim2.new(0.165, 0, 0, 0)
-button5.TextColor3 = Color3.fromRGB(255, 255, 255)
-button5.Font = Enum.Font.PatrickHand
-button5.Text = "Find RE (Basic)"
-
-button5.MouseButton1Click:Connect(function()
-    local function findRemoteEvents(parent, path)
-    for _, child in pairs(parent:GetChildren()) do
-        local currentPath = path .. child.Name
-        
-        if child:IsA("RemoteEvent") then
-            print(string.format("Remote Event Found: %s, Inside: %s", child.Name, path))
-        end
-        
-        -- Recursively search in children
-        findRemoteEvents(child, currentPath .. ".")
-    end
-end
-
--- Start the search from ReplicatedStorage and StarterPack
-local replicatedStorage = game:GetService("ReplicatedStorage")
-local starterPack = game:GetService("StarterPack")
-
-findRemoteEvents(replicatedStorage, "ReplicatedStorage.")
-findRemoteEvents(starterPack, "StarterPack.")
-end)
-
-local button6 = Instance.new("TextButton")
-button6.Parent = ToolsBox
-button6.BackgroundColor3 = Color3.new(0, 0, 0)
-button6.BackgroundTransparency = 0.5
-button6.Size = UDim2.new(0.03, 0, 0.9, 0)
-button6.TextScaled = true
-button6.Position = UDim2.new(0.205, 0, 0, 0)
-button6.TextColor3 = Color3.fromRGB(255, 255, 255)
-button6.Font = Enum.Font.PatrickHand
-button6.Text = "Infinite Yield"
-
-button6.MouseButton1Click:Connect(function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/RobloxScript_1/main/UISound"))()
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
-    task.wait()
-    DisplayChat_Message("/function infiniteyield")
-end)
-
-local button7 = Instance.new("TextButton")
-button7.Parent = ToolsBox
-button7.BackgroundColor3 = Color3.new(0, 0, 0)
-button7.BackgroundTransparency = 0.5
-button7.Size = UDim2.new(0.03, 0, 0.9, 0)
-button7.TextScaled = true
-button7.Position = UDim2.new(0.245, 0, 0, 0)
-button7.TextColor3 = Color3.fromRGB(255, 255, 255)
-button7.Font = Enum.Font.PatrickHand
-button7.Text = "Part Detector"
-
-button7.MouseButton1Click:Connect(function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/RobloxScript_1/main/UISound"))()
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/GhostPlayer352/Test4/main/Part%20Name%20Detector'))()
-    task.wait()
-    DisplayChat_Message("/function CheckPart")
-end)
-
-local button8 = Instance.new("TextButton")
-button8.Parent = ToolsBox
-button8.BackgroundColor3 = Color3.new(0, 0, 0)
-button8.BackgroundTransparency = 0.5
-button8.Size = UDim2.new(0.03, 0, 0.9, 0)
-button8.TextScaled = true
-button8.Position = UDim2.new(0.285, 0, 0, 0)
-button8.TextColor3 = Color3.fromRGB(255, 255, 255)
-button8.Font = Enum.Font.PatrickHand
-button8.Text = "Commands V3"
-
-button8.MouseButton1Click:Connect(function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/RobloxScript_1/main/UISound"))()
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/NganHa2k3/RobloxScript/item/Commands_V3'))()
-end)
-
-local button9 = Instance.new("TextButton")
-button9.Parent = ToolsBox
-button9.BackgroundColor3 = Color3.new(0, 0, 0)
-button9.BackgroundTransparency = 0.5
-button9.Size = UDim2.new(0.03, 0, 0.9, 0)
-button9.TextScaled = true
-button9.Position = UDim2.new(0.325, 0, 0, 0)
-button9.TextColor3 = Color3.fromRGB(255, 255, 255)
-button9.Font = Enum.Font.PatrickHand
-button9.Text = "DEX Explorer for Mobile"
-
-button9.MouseButton1Click:Connect(function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/RobloxScript/refs/heads/item/Dex_Explorer_For_Mobile"))()
-    print("So happy it return, then i create a backup version.")
-    task.wait()
-    DisplayChat_Message("/function DexExplorer")
-end)
-
-local WalkOnAir = Instance.new("TextButton")
-WalkOnAir.Parent = ToolsBox
-WalkOnAir.BackgroundColor3 = Color3.new(0, 0, 0)
-WalkOnAir.BackgroundTransparency = 0.5
-WalkOnAir.Size = UDim2.new(0.03, 0, 0.9, 0)
-WalkOnAir.TextScaled = true
-WalkOnAir.Position = UDim2.new(0.365, 0, 0, 0)
-WalkOnAir.TextColor3 = Color3.fromRGB(255, 255, 255)
-WalkOnAir.Font = Enum.Font.PatrickHand
-WalkOnAir.Text = "Walking: Normal"
-
-local isToggled = false
-local part
-
-WalkOnAir.MouseButton1Click:Connect(function()
-    local player = game.Players.LocalPlayer
-
-    if not isToggled then
-        isToggled = true
-        WalkOnAir.Text = "Walking: Safe"
-        WalkOnAir.TextColor3 = Color3.fromRGB(0, 255, 255)
-
-        part = Instance.new("Part")
-        part.Name = "NH+Float"
-        part.Size = Vector3.new(5, 0.2, 5)
-        part.Position = Vector3.new(
-            player.Character.HumanoidRootPart.Position.X,
-            player.Character.HumanoidRootPart.Position.Y - 3.5,
-            player.Character.HumanoidRootPart.Position.Z
-        )
-        part.Anchored = true
-        part.Transparency = 0.95
-        part.Parent = workspace
-        
-        local lockedY = part.Position.Y
-
-        local function updatePartPosition()
-            if player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
-                local humanoidRootPart = player.Character.HumanoidRootPart
-                part.Position = Vector3.new(
-                    humanoidRootPart.Position.X,
-                    lockedY,
-                    humanoidRootPart.Position.Z
-                )
-                
-                if humanoidRootPart.Position.Y < lockedY then
-                    humanoidRootPart.CFrame = CFrame.new(
-                        humanoidRootPart.Position.X,
-                        lockedY + 2,
-                        humanoidRootPart.Position.Z
-                    )
-                end
-            end
-        end
-
-        local updateConnection
-        updateConnection = game:GetService("RunService").Heartbeat:Connect(function()
-            if isToggled then
-                updatePartPosition()
-            else
-                updateConnection:Disconnect()
-            end
-        end)
-
-    else
-        isToggled = false
-        WalkOnAir.Text = "Walking: Normal"
-        WalkOnAir.TextColor3 = Color3.fromRGB(255, 255, 255)
-        
-        if part then
-            part:Destroy()
-            part = nil
-        end
-    end
-end)
-
-local WayPoint = Instance.new("TextButton")
-WayPoint.Parent = ScreenGui
-WayPoint.BackgroundColor3 = Color3.new(0, 0, 0)
-WayPoint.BackgroundTransparency = 0.5
-WayPoint.Position = UDim2.new(0.3, 0, 0.6, 0)
-WayPoint.Size = UDim2.new(0.05, 0, 0.1, 0)
-WayPoint.TextColor3 = Color3.new(1, 1, 1)
-WayPoint.TextScaled = true
-WayPoint.Font = Enum.Font.Code
-WayPoint.Text = "□"
-WayPoint.Visible = false
-
-local UIC_2 = Instance.new("UICorner")
-UIC_2.Parent = WayPoint
-UIC_2.CornerRadius = UDim.new(0.1, 0)
-
-local AlreadyWayPoint = false
-local SavedWayPoint, VFXP
-function SpawnPart_WayPoint()
-    if AlreadyWayPoint then
-        local plr = game:GetService("Players").LocalPlayer
-        
-        SavedWayPoint = Instance.new("Part")
-        VFXP = Instance.new("ParticleEmitter", SavedWayPoint)
-        SavedWayPoint.Size = Vector3.new(0.5, 0.5, 0.5)
-        SavedWayPoint.Anchored = true
-        SavedWayPoint.Name = "GateWay"
-        SavedWayPoint.Parent = game.Workspace
-        SavedWayPoint.Transparency = 1
-        SavedWayPoint.CanCollide = false
-        SavedWayPoint.Position = Vector3.new(
-            plr.Character.HumanoidRootPart.Position.X,
-            plr.Character.HumanoidRootPart.Position.Y,
-            plr.Character.HumanoidRootPart.Position.Z
-        )
-    else
-        local plr = game:GetService("Players").LocalPlayer
-        
-        plr.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").GateWay.CFrame
-        wait(0.05)
-        SavedWayPoint:Destroy()
-        SavedWayPoint = nil
-    end
-end
-
-WayPoint.MouseButton1Click:Connect(function()
-    if AlreadyWayPoint then
-        AlreadyWayPoint = false
-        SpawnPart_WayPoint()
-        WayPoint.Text = "□"
-    else
-        AlreadyWayPoint = true
-        SpawnPart_WayPoint()
-        WayPoint.Text = "■"
-    end
-end)
-
-local EnableWayPoint = Instance.new("TextButton")
-EnableWayPoint.Parent = ToolsBox
-EnableWayPoint.BackgroundColor3 = Color3.new(0, 0, 0)
-EnableWayPoint.BackgroundTransparency = 0.5
-EnableWayPoint.Position = UDim2.new(0.405, 0, 0, 0)
-EnableWayPoint.Size = UDim2.new(0.03, 0, 0.9, 0)
-EnableWayPoint.TextScaled = true
-EnableWayPoint.TextColor3 = Color3.new(1, 1, 1)
-EnableWayPoint.Font = Enum.Font.Code
-EnableWayPoint.Text = "Way Point: No"
-EnableWayPoint.Visible = true
-
-local IsActivated_X1 = false
-EnableWayPoint.MouseButton1Click:Connect(function()
-    if IsActivated_X1 then
-        IsActivated_X1 = false
-        EnableWayPoint.Text = "Way Point: No"
-        EnableWayPoint.TextColor3 = Color3.new(1, 1, 1)
-        WayPoint.Visible = false
-    else
-        IsActivated_X1 = true
-        EnableWayPoint.Text = "Way Point: Yes"
-        EnableWayPoint.TextColor3 = Color3.new(0, 1, 0)
-        WayPoint.Visible = true
-    end
-end)
-
--- N msg --
-
-loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/RobloxScript_1/main/NotifySound"))()
-
-local CoreGui = game:GetService("StarterGui")
-
-    CoreGui:SetCore("SendNotification", {
-        Title = "Welcome to HoangHien Script",
-        Text = " This is a bunch of useful tools, for scripting !",
-        Duration = 2,
-})
-
--- CharacterAdded function --
-
-local plr = game:GetService("Players").LocalPlayer
-
-plr.CharacterAdded:Connect(function()
-    local TPWayPoint_After_ReSpawning = game:GetService("Workspace"):FindFirstChild("GateWay")
-    if TPWayPoint_After_ReSpawning then
-        print("Preparing to teleport to Way Point!")
-        wait(1)
-        plr.Character.HumanoidRootPart.CFrame = TPWayPoint_After_ReSpawning.CFrame
-        task.wait()
-        WayPoint.Text = "□"
-        SavedWayPoint:Destroy()
-    else
-        print("Nothing...")
-    end
-end)
-
-local Noclip = Instance.new("TextButton")
-Noclip.Parent = ScreenGui
-Noclip.BackgroundColor3 = Color3.new(0, 0, 0)
-Noclip.BackgroundTransparency = 0.5
-Noclip.Position = UDim2.new(0.38, 0, 0.6, 0)
-Noclip.Size = UDim2.new(0.05, 0, 0.1, 0)
-Noclip.TextColor3 = Color3.new(1, 1, 1)
-Noclip.TextScaled = true
-Noclip.Font = Enum.Font.Code
-Noclip.Text = "Noclip"
-Noclip.Visible = false
-
-local UIC_3 = Instance.new("UICorner")
-UIC_3.Parent = Noclip
-UIC_3.CornerRadius = UDim.new(0.1, 0)
-
-local AlreadyNoclip = false
-function ThroughObject_Aka_Noclip(boolean)
-    for _, n in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
-        if n:IsA("BasePart") then
-            if boolean then
-                n.CanCollide = false
-            else
-                n.CanCollide = true
-            end
-        end
-    end
-end
-
-Noclip.MouseButton1Click:Connect(function()
-    if AlreadyNoclip then
-        AlreadyNoclip = false
-        ThroughObject_Aka_Noclip(AlreadyNoclip)
-        Noclip.Text = "Noclip"
-    else
-        AlreadyNoclip = true
-        ThroughObject_Aka_Noclip(AlreadyNoclip)
-        Noclip.Text = "Clip"
-    end
-end)
-
-local EnableNoclip = Instance.new("TextButton")
-EnableNoclip.Parent = ToolsBox
-EnableNoclip.BackgroundColor3 = Color3.new(0, 0, 0)
-EnableNoclip.BackgroundTransparency = 0.5
-EnableNoclip.Position = UDim2.new(0.445, 0, 0, 0)
-EnableNoclip.Size = UDim2.new(0.03, 0, 0.9, 0)
-EnableNoclip.TextScaled = true
-EnableNoclip.TextColor3 = Color3.new(1, 1, 1)
-EnableNoclip.Font = Enum.Font.Code
-EnableNoclip.Text = "Noclip: No"
-EnableNoclip.Visible = true
-
-local IsActivated_X1 = false
-EnableNoclip.MouseButton1Click:Connect(function()
-    if IsActivated_X1 then
-        IsActivated_X1 = false
-        EnableNoclip.Text = "Noclip: No"
-        EnableNoclip.TextColor3 = Color3.new(1, 1, 1)
-        Noclip.Visible = false
-    else
-        IsActivated_X1 = true
-        EnableNoclip.Text = "Noclip: Yes"
-        EnableNoclip.TextColor3 = Color3.new(0, 1, 0)
-        Noclip.Visible = true
-    end
-end)
-
-local AnimationID_SaverButton = Instance.new("TextButton")
-AnimationID_SaverButton.Parent = ToolsBox
-AnimationID_SaverButton.BackgroundColor3 = Color3.new(0, 0, 0)
-AnimationID_SaverButton.BackgroundTransparency = 0.5
-AnimationID_SaverButton.Size = UDim2.new(0.03, 0, 0.9, 0)
-AnimationID_SaverButton.TextScaled = true
-AnimationID_SaverButton.Position = UDim2.new(0.485, 0, 0, 0)
-AnimationID_SaverButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-AnimationID_SaverButton.Font = Enum.Font.PatrickHand
-AnimationID_SaverButton.Text = "Animations Logger"
-
-AnimationID_SaverButton.MouseButton1Click:Connect(function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/Ancient2k3/NewProject/refs/heads/main/AnimationObject.lua"))()
-    print("used to save AnimationId.")
-    task.wait()
-    DisplayChat_Message("/function animationsaver")
-end)
-
-local IYEdittedLoader = Instance.new("TextButton")
-IYEdittedLoader.Parent = ToolsBox
-IYEdittedLoader.BackgroundColor3 = Color3.new(0, 0, 0)
-IYEdittedLoader.BackgroundTransparency = 0.5
-IYEdittedLoader.Position = UDim2.new(0.525, 0, 0, 0)
-IYEdittedLoader.Size = UDim2.new(0.03, 0, 0.9, 0)
-IYEdittedLoader.TextScaled = true
-IYEdittedLoader.TextColor3 = Color3.new(1, 1, 1)
-IYEdittedLoader.Font = Enum.Font.Code
-IYEdittedLoader.Text = "Custom Executor"
-IYEdittedLoader.Visible = true
-
-local _doAlrRunLoadedScripts = false
-IYEdittedLoader.MouseButton1Click:Connect(function()
-    if not _doAlrRunLoadedScripts then
-        _doAlrRunLoadedScripts = true
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/RobloxScript_0/main/Executor_V2"))()
-    else
-        print("alr loaded Infinite Yield Edited.")
-    end
-end)
-
-local btn_10 = Instance.new("TextButton")
-btn_10.Parent = ToolsBox
-btn_10.BackgroundColor3 = Color3.new(0, 0, 0)
-btn_10.BackgroundTransparency = 0.5
-btn_10.Position = UDim2.new(0.565, 0, 0, 0)
-btn_10.Size = UDim2.new(0.03, 0, 0.9, 0)
-btn_10.TextScaled = true
-btn_10.TextColor3 = Color3.new(1, 1, 1)
-btn_10.Font = Enum.Font.Code
-btn_10.Text = "Mesh Angles Editor"
-btn_10.Visible = true
-
-btn_10.MouseButton1Click:Connect(function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/Ancient2k3/DetectTool/refs/heads/main/MeshAnglesEditor.luau"))()
-end)
-
-local btn_11 = Instance.new("TextButton")
-btn_11.Parent = ToolsBox
-btn_11.BackgroundColor3 = Color3.new(0, 0, 0)
-btn_11.BackgroundTransparency = 0.5
-btn_11.Position = UDim2.new(0.605, 0, 0, 0)
-btn_11.Size = UDim2.new(0.03, 0, 0.9, 0)
-btn_11.TextScaled = true
-btn_11.TextColor3 = Color3.new(1, 1, 1)
-btn_11.Font = Enum.Font.Code
-btn_11.Text = "AimbotUI"
-btn_11.Visible = true
-
-btn_11.MouseButton1Click:Connect(function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/Ancient2k3/Tensura/refs/heads/main/aimbot.luau"))()
-end)
-
--- Chatted --
-local players = game.Players.LocalPlayer
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Ancient2k3/DetectTool/refs/heads/main/TalkMSG/RandomMSG.luau"))()
--- Keep Game Script --
-loadstring(game:HttpGet("https://raw.githubusercontent.com/NganHa2k3/Tensura/refs/heads/powerful/KeepScript_OPEN"))()
-if _G.ExecuteScriptAfterTeleport then
-    _G.ExecuteScriptAfterTeleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/NganHa2k3/Tensura/slime/WorldsVoice_B'))()")
-else
-    print("not found _G.ExecuteScriptAfterTeleport somewhere")
+for name, url in pairs(datas.buttons.idk) do
+    _make_button(name, url)
 end

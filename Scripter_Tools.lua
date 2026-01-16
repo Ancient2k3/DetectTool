@@ -10,7 +10,7 @@ local datas = {
   folders = {"_SkyIsAzure", "UI_INSTANCES", "UI_ASSETS"},
   buttons = {
       vars = {toggle_ui = false, current_pos = 0.005},
-      idk = require(".")
+      idk = require("./src/maps")
   },
   tween_anims = {
     show = tws:Create(board, TweenInfo.new(1, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {

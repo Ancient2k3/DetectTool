@@ -15,6 +15,7 @@ local datas = {
     tween_anims = {}
 }
 
+local first_tick = tick()
 repeat task.wait() until type(datas.buttons.idk) == "table"
 
 for index = 2, #datas.folders do
@@ -43,6 +44,7 @@ dashboard.TextColor3 = Color3.new(1, 1, 1)
 dashboard.Font = Enum.Font.PatrickHand
 dashboard.Text = "「Script」"
 Instance.new("UICorner", dashboard).CornerRadius = UDim.new(0.15, 0)
+Instance.new("UIGradient", dashboard).Color = ColorSequence.new(Color3.new(0, 1, 0), Color3.new(1, 1, 1))
 
 board.Size = UDim2.new(0.3, 0, 0.1, 0)
 board.Position = UDim2.new(1.2, 0, 0.18, 0)
@@ -69,6 +71,8 @@ function _make_button(name, url)
     btn.TextColor3 = Color3.fromRGB(255, 255, 255)
     btn.Font = Enum.Font.PatrickHand
     btn.Text = name
+    local r, g, b = math.random(1, 255), math.random(1, 255), math.random(1, 255)
+    Instance.new("UIGradient", btn).Color = ColorSequence.new(Color3.fromRGB(r, g, b), Color3.new(1, 1, 1))
     datas.buttons.vars.current_pos = datas.buttons.vars.current_pos + 0.040
     btn.MouseButton1Click:Connect(function()
         loadstring(game:HttpGet(url))()
@@ -89,4 +93,4 @@ end)
 for name, url in pairs(datas.buttons.idk) do
     _make_button(name, url)
     print("[+]: created " .. name .. " button.")
-end
+end print("[Dev-Tools Dashboard Loaded In " .. tostring(tick() - first_tick):sub(1, 4) .. " Seconds.]")

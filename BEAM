@@ -1,0 +1,49 @@
+local plr = game.Players.LocalPlayer
+local ws = game.Workspace
+
+local tool = Instance.new("Tool", plr.Backpack)
+tool.RequiresHandle = false
+tool.Name = "Reflection Beam"
+
+function shoot(p,pos,b)
+  local cur,dir=pos,p.CFrame.LookVector
+  local rcp=RaycastParams.new()
+  rcp.FilterDescendantsInstances={p,game.Players.LocalPlayer.Character}
+  for i=1,b+1 do
+    local res=workspace:Raycast(cur,dir*100,rcp)
+    local tar=res and res.Position or cur+(dir*100)
+    local bp=Instance.new("Part")
+    bp.Size=Vector3.new(0.5,0.5,(cur-tar).Magnitude)
+    bp.CFrame=CFrame.new(cur:Lerp(tar,0.5),tar)
+    bp.Anchored,bp.CanCollide,bp.Material,bp.Color=true,false,Enum.Material.Neon,Color3.new(0,1,0)
+    bp.Transparency = 0.25
+    bp.Parent=workspace
+    game:GetService("Debris"):AddItem(bp,10)
+    if res then
+      dir=dir-(2*dir:Dot(res.Normal)*res.Normal)
+      cur=tar
+    else break end
+    task.wait(0.03)
+  end p:Destroy()
+end
+
+if not ws:FindFirstChild("N1") then
+  local part = Instance.new("Part", ws)
+  part.Name = "N1"
+  part.Size = Vector3.new(0.1, 0.1, 0.1)
+  part.Position = Vector3.new(0, 0, 0)
+  part.Anchored = true
+  part.CanCollide = false
+  part.Transparency = 1
+end
+
+local part = ws.N1
+tool.Activated:Connect(function()
+part.CFrame = CFrame.new(plr.Character:GetBoundingBox().Position)
+local new_part = part:Clone()
+new_part.Parent = ws
+new_part.CanCollide = false
+new_part.CFrame = CFrame.lookAt(new_part.Position, plr:GetMouse().Hit.p)
+
+shoot(new_part, plr:GetMouse().Hit.p, 40)
+end)

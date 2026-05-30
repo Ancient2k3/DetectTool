@@ -6,5 +6,6 @@ local forms = {
   ["DEX (OLD)"] = forms.it_hub.."Ancient2k3/RobloxScript/refs/heads/item/Dex_Explorer_For_Mobile",
   ["Custom Executor"] = forms.it_hub.."Ancient2k3/RobloxScript_0/refs/heads/main/Executor_V2.lua",
   ["Aimbot UI"] = forms.it_hub.."Ancient2k3/Tensura/refs/heads/main/aimbot.luau",
-  ["Animations Logger"] = forms.it_hub.."Ancient2k3/NewProject/refs/heads/main/AnimationObject.lua"
+  ["Animations Logger"] = forms.it_hub.."Ancient2k3/NewProject/refs/heads/main/AnimationObject.lua",
+  ["Server Hop (Lowest)"] = forms.it_hub.."Ancient2k3/Tensura/refs/heads/main/server_hop_lowest_count.lua"
 } -- idk what i'm doing --

@@ -1,6 +1,7 @@
 local core = game:GetService("CoreGui")
 
 local _active = false
+local _codes = game:HttpGet("https://raw.githubusercontent.com/Ancient2k3/Tensura/refs/heads/main/FLY.luau")
 
 local screenui = Instance.new("ScreenGui", core)
 screenui.Name = "FLY:SIMPLE"
@@ -19,12 +20,14 @@ btn.Font = Enum.Font.Arcade
 btn.Visible = true
 btn.ZIndex = 1
 
-local da_script = ""
+loadstring(_codes:gsub("Script_FlyingEnabled", "FLY_SPECIAL"))()
 
 btn.MouseButton1Click:Connect(function()
   if not _active then _active = true
     btn.TextColor3 = Color3.new(0, 1, 0)
+    _G.FLY_SPECIAL = true
   else _active = false
     btn.TextColor3 = Color3.new(1, 1, 1)
+    _G.FLY_SPECIAL = false
   end
 end)

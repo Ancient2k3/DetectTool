@@ -19,6 +19,7 @@ btn.Text = "BAY"
 btn.Font = Enum.Font.Arcade
 btn.Visible = true
 btn.ZIndex = 1
+Instance.new("UICorner", btn).CornerRadius = UDim.new(0.15, 0)
 
 loadstring(_codes:gsub("Script_FlyingEnabled", "FLY_SPECIAL"))()
 

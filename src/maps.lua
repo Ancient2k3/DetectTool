@@ -4,6 +4,7 @@ local forms = {
   ["IY"] = forms.it_hub.."EdgeIY/infiniteyield/refs/heads/master/source",
   ["R-SPY"] = forms.it_hub.."Ancient2k3/RobloxScript/refs/heads/item/Remote_Spy_For_Mobile",
   ["DEX (OLD)"] = forms.it_hub.."Ancient2k3/RobloxScript/refs/heads/item/Dex_Explorer_For_Mobile",
+  ["Server Chat"] = forms.it_hub.."HoangHienXScripts/Projekts/refs/heads/main/OTHERS/Communication.lua",
   ["Custom Executor"] = forms.it_hub.."Ancient2k3/RobloxScript_0/refs/heads/main/Executor_V2.lua",
   ["Aimbot-UI"] = forms.it_hub.."Ancient2k3/Tensura/refs/heads/main/aimbot.luau",
   ["Animations Logger"] = forms.it_hub.."Ancient2k3/NewProject/refs/heads/main/AnimationObject.lua",

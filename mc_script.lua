@@ -1,4 +1,4 @@
--- Minecraft Btools --
+-- My old minecraft script, i'll patched it later... --
 function _Main()
     local _Ws, _Plrs, _StG, _CG
     _Ws = game:GetService("Workspace")
@@ -444,13 +444,11 @@ function _Main()
     end
     
     _AddProperties(_Fr, 0.05, "UICorner")
-    --_AddProperties(_SrF, 0.15, "UICorner")
     _Add2Table_CubesNamed(_G._HHxScript_DecorationCubes_DataStorage)
     _CreateTool(_G._HHxScript_DecorationCubes_DataStorage)
     _Notify("Minecraft-InRoblox v" .. _CurrentVersion)
 end
 
---loadstring(game:HttpGet("https://raw.githubusercontent.com/HoangHien2k3/NewProject/refs/heads/main/Avatar.luau"))()
 if game:IsLoaded() then
     local ss, err = pcall(_Main)
     if ss then

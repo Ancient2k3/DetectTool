@@ -42,9 +42,7 @@ end
 function MODULE.find_exit(spos, epos)
   local startPos = snapToGrid(spos)
   local endPos = snapToGrid(epos)
-  if not isWalkable(endPos) then
-    warn("Điểm đích bị chặn, đường đi có thể không tới chính xác vị trí!")
-  end
+  --if not isWalkable(endPos) then warn("Điểm đích bị chặn, đường đi có thể không tới chính xác vị trí!") end
   local openSet = {}   
   local closedSet = {} 
   local gScore = {}    
@@ -54,7 +52,7 @@ function MODULE.find_exit(spos, epos)
   openSet[startKey] = startPos
   gScore[startKey] = 0
   fScore[startKey] = heuristic(startPos, endPos)
-  while next(openSet) ~= nil do
+  while next(openSet) ~= nil do task.wait(0.01)
 	local current = nil
 	local currentKey = nil
 	local lowestF = math.huge
@@ -64,13 +62,13 @@ function MODULE.find_exit(spos, epos)
 		lowestF = score
 		current = node
 		currentKey = key
-	  end
+	  end task.wait(0.01)
 	end
 	if (current - endPos).Magnitude < (GRID_SIZE * 1.5) then
 	  local path = {}
 	  local temp = current
 	  local tempKey = currentKey
-	  while temp do
+	  while temp do task.wait(0.01)
 		table.insert(path, 1, temp)
 		temp = cameFrom[tempKey]
 		tempKey = temp and toKey(temp)
@@ -80,7 +78,7 @@ function MODULE.find_exit(spos, epos)
 	end
 	openSet[currentKey] = nil
 	closedSet[currentKey] = true
-	for _, dir in ipairs(DIRECTIONS) do
+	for _, dir in ipairs(DIRECTIONS) do task.wait(0.01)
 	  local neighbor = current + (dir * GRID_SIZE)
 	  local neighborKey = toKey(neighbor)
 	  if not closedSet[neighborKey] and isWalkable(neighbor) then

@@ -3,6 +3,18 @@ local GRID_SIZE = 4
 local DIRECTIONS = {}
 local MODULE = {}
 
+local PNT = Instance.new("Part", workspace)
+PNT.Name = "Point_"..tostring(math.random(1000, 9000))
+PNT.Anchored = true
+PNT.CanCollide = false
+PNT.CastShadow = false
+PNT.Transparency = 0.25
+PNT.Material = Enum.Material.Neon
+PNT.Size = Vector3.new(1, 1, 1)
+PNT.Shape = "Ball"
+PNT.Color = Color3.new(1, 1, 0)
+PNT.Position = Vector3.new(0, 9e4, 0)
+
 for x = -1, 1 do
   for y = -1, 1 do
 	for z = -1, 1 do
@@ -67,6 +79,7 @@ function MODULE.find_exit(spos, epos)
 	if (current - endPos).Magnitude < (GRID_SIZE * 1.5) then
 	  local path = {}
 	  local temp = current
+	  PNT.Position = temp
 	  local tempKey = currentKey
 	  while temp do task.wait(0.01)
 		table.insert(path, 1, temp)

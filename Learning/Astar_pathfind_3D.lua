@@ -1,5 +1,5 @@
 -- A:star Pathfinding --
-local GRID_SIZE = 4 
+local GRID_SIZE = ... or 4
 local DIRECTIONS = {}
 local MODULE = {}
 
@@ -64,7 +64,7 @@ function MODULE.find_exit(spos, epos)
   openSet[startKey] = startPos
   gScore[startKey] = 0
   fScore[startKey] = heuristic(startPos, endPos)
-  while next(openSet) ~= nil do task.wait(0.01)
+  while next(openSet) ~= nil do task.wait()
 	local current = nil
 	local currentKey = nil
 	local lowestF = math.huge
@@ -73,15 +73,15 @@ function MODULE.find_exit(spos, epos)
 	  if score < lowestF then
 		lowestF = score
 		current = node
+	    PNT.Position = current
 		currentKey = key
-	  end task.wait(0.01)
+	  end
 	end
 	if (current - endPos).Magnitude < (GRID_SIZE * 1.5) then
 	  local path = {}
 	  local temp = current
-	  PNT.Position = temp
 	  local tempKey = currentKey
-	  while temp do task.wait(0.01)
+	  while temp do task.wait()
 		table.insert(path, 1, temp)
 		temp = cameFrom[tempKey]
 		tempKey = temp and toKey(temp)
@@ -91,7 +91,7 @@ function MODULE.find_exit(spos, epos)
 	end
 	openSet[currentKey] = nil
 	closedSet[currentKey] = true
-	for _, dir in ipairs(DIRECTIONS) do task.wait(0.01)
+	for _, dir in ipairs(DIRECTIONS) do
 	  local neighbor = current + (dir * GRID_SIZE)
 	  local neighborKey = toKey(neighbor)
 	  if not closedSet[neighborKey] and isWalkable(neighbor) then

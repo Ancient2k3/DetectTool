@@ -1,5 +1,9 @@
--- Not tested yet --
-local ws = game:GetService("Workspace")
+local ws, plrs
+ws = game:GetService("Workspace")
+plrs = game:GetService("Players")
+
+local plr
+plr = plrs.LocalPlayer
 
 local params = RaycastParams.new()
 params.FilterType = Enum.RaycastFilterType.Exclude
